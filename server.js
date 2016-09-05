@@ -6,6 +6,7 @@ var app = express();
 var port = process.env.PORT || 8080;
 
 var latinDictionary = require(__dirname+'/lib/latin/dictionary').words;
+var smash64Dictionary = require(__dirname+'/lib/smash64/dictionary');
 var ssbmDictionary = require(__dirname+'/lib/ssbm/dictionary');
 var brawlDictionary = require(__dirname+'/lib/ssbm/dictionary');
 
@@ -15,9 +16,30 @@ app.use(express.static(__dirname));
 app.get('/api/get/', function(req, res) {
     shuffle(latinDictionary);
 
-    var latin = latinDictionary.slice(0, 100);
-    var words = latin.concat(ssbmDictionary.characters, ssbmDictionary.stages, ssbmDictionary.items, ssbmDictionary.general);
-    words = words.concat(brawlDictionary.characters, brawlDictionary.stages, brawlDictionary.items, brawlDictionary.general);
+    var words = [].concat(
+      smash64Dictionary.characters,
+      smash64Dictionary.stages,
+      smash64Dictionary.items,
+      smash64Dictionary.general
+    );
+
+    words = words.concat(
+      ssbmDictionary.characters,
+      ssbmDictionary.stages,
+      ssbmDictionary.items,
+      ssbmDictionary.general
+    );
+
+    words = words.concat(
+      brawlDictionary.characters,
+      brawlDictionary.stages,
+      brawlDictionary.items,
+      brawlDictionary.general
+    );
+
+    var latin = latinDictionary.slice(0, words.length / 6);
+
+    words = words.concat(latin);
 
     var numUnits =  req.query.numUnits || 3;
 
