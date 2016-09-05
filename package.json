@@ -1,0 +1,19 @@
+{
+  "name": "smashipsum",
+  "version": "1.0.0",
+  "description": "Smash Bros lorem ipsum generator.",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/disregardingstandards/smashipsum.git"
+  }
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Nova Courtois",
+  "license": "MIT",
+  "dependencies": {
+    "animate.css": "^3.5.2",
+    "lorem-ipsum": "^1.0.3"
+  }
+}
