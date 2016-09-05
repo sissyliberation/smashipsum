@@ -174,7 +174,6 @@
     $("#smashIpsumBtn").on('click', function() {
 
         var numUnits = $("#smashIpsumNumber").val();
-        console.log(numUnits);
 
         $.get( "api/get/",{
             numUnits: numUnits
