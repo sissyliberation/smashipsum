@@ -5,15 +5,18 @@
   "repository": {
     "type": "git",
     "url": "git://github.com/disregardingstandards/smashipsum.git"
-  }
+  },
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
   },
   "author": "Nova Courtois",
   "license": "MIT",
   "dependencies": {
     "animate.css": "^3.5.2",
-    "lorem-ipsum": "^1.0.3"
+    "express": "^4.14.0",
+    "lorem-ipsum": "^1.0.3",
+    "request": "^2.74.0"
   }
 }
