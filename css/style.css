@@ -56,6 +56,8 @@ footer.page-footer {
     max-height: 864px;
     position: relative;
     background-color: #22313F;
+    background-image: url('../img/gamecube.png');
+    background-position: center center;
 }
 
 #nav_f{
