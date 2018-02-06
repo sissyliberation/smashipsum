@@ -3,7 +3,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no"/>
-    <meta name="theme-color" content="#2196F3">
 
     <meta name="description" content="SmashIpsum: Smash Bros Lorem Ipsum Generator." />
     <meta name="keywords" content="" />
@@ -23,174 +22,271 @@
 
     <title>SmashIpsum</title>
 
-    <!-- CSS  -->
-    <link href="https://fonts.googleapis.com/css?family=Fjalla+One|Vollkorn:400i" rel="stylesheet">
-    <link href="css/materialize.min.css" type="text/css" rel="stylesheet">
-    <!-- <link href="node_modules/animate.css/animate.min.css" type="text/css" rel="stylesheet" > -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css" type="text/css" rel="stylesheet" >
+    <link href="https://fonts.googleapis.com/css?family=Archivo+Narrow:700|Playfair+Display" rel="stylesheet">
     <link href="css/style.css" type="text/css" rel="stylesheet" >
 </head>
-<body id="top" class="scrollspy">
 
-<!-- Pre Loader -->
-<div id="loader-wrapper">
-    <div id="loader"></div>
- 
-    <div class="loader-section section-left"></div>
-    <div class="loader-section section-right"></div>
- 
-</div>
+<body>
+    <nav class="navbar is-transparent" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
+        <a class="navbar-item is-vcentered" href="/">
+          <img src="/img/smashipsum-logo.png" alt="SmashIpsum: Smash Bros Lorem Ipsum Generator." width="150" height="28">
+        </a>
 
-<!--Navigation-->
- <div class="navbar-fixed">
-    <nav id="nav_f" class="default_color" role="navigation">
-        <div class="container">
-            <div class="nav-wrapper">
-            <a href="#" id="logo-container" class="brand-logo">SmashIpsum</a>
-                <ul class="right hide-on-med-and-down">
-                    <li><a href="#intro">Text</a></li>
-                    <li><a href="#about">About</a></li>
-                </ul>
-                <ul id="nav-mobile" class="side-nav">
-                    <li><a href="#intro">Text</a></li>
-                    <li><a href="#about">About</a></li>
-                </ul>
-            <a href="#" data-activates="nav-mobile" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
-            </div>
+        <!--        
+        <button class="button navbar-burger">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        -->
+      </div>
+
+      <div class="navbar-menu" id="navMenu">
+        <div class="navbar-menu">
+          <div class="navbar-end">
+            <a class="navbar-item" href="#generator">
+              Generator
+            </a>
+            <a class="navbar-item" href="#about">
+              About
+            </a>
+          </div>
         </div>
+      </div>
     </nav>
-</div>
 
-<!--Hero-->
-<div class="section no-pad-bot" id="index-banner">
+  <section class="section">
     <div class="container">
-        <h1 class="text_h center header cd-headline">
-            SmashIpsum 
-        </h1>
-
-        <h2 class="center changing cd-headline letters type">
-            <span class="cd-words-wrapper waiting">
-                <b class="is-visible">Show me your moves!</b>
-                <b>up-air, up-air, up-air, forward AIR, FORWARD AIR!</b>
-                <!-- <b>developing</b> -->
-            </span>
-        </h2>
+      <h1 class="title">Placeholder Text</h1>
+      <p>A must if you are any kind of developer or designer. Why not smash it up a bit?</p>
+      <p>SmashIpsum gives you all fun, nostalgia, and salt you get from Smash Bros while you pretend to work.</p>
     </div>
-</div>
+  </section>
 
-<!--Intro and service-->
-<div id="intro" class="section scrollspy">
+  <section class="hero" id="about">
+    <div class="hero-body">
+      <div class="container">
+        <div class="columns is-vcentered">
+          <div class="column is-4">
+            <h1 class="title">Currently Supports</h1>
+          </div>
+
+          <div class="column is-2">
+            <img class="smashlogo" src="/img/smashlogos/n64.png" alt="Super Smash Bros logo">
+          </div>
+
+          <div class="column is-2 is-offset-1">
+            <img class="smashlogo" src="/img/smashlogos/melee.png" alt="Super Smash Bros Melee logo">
+          </div>
+
+          <div class="column is-2 is-offset-1">
+            <img class="smashlogo" src="/img/smashlogos/brawl.png" alt="Super Smash Bros Brawl logo">
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+    
+  <section class="section" id="settings" >
     <div class="container">
-        <div class="row">
-            <div class="col s12">
-                <h2 class="center header text_h2">Smash Bros Lorem Ipsum Generator</h2>
+      <h1 class="title">Settings</h1>
+
+      <div class="columns">
+        <div class="column">
+          <h3>Smash 64</h3>
+          <div class="field">
+            <div class="control">
+              <label class="checkbox">
+                <input id="smash64characters" type="checkbox" checked> <span>Characters</span>
+              </label>
             </div>
-
-            <div class="col s12 text" id="smashIpsum"></div>
-        </div>
-        <div class="row center">
-            <div class="input-field col offset-l4 l4 s12">
-                <input id="smashIpsumNumber" name="number" type="number" class="validate" value="3">
-                <label for="smashIpsumNumber" ># of paragraphs</label>
+          </div>
+          <div class="field">
+            <div class="control">
+              <label class="checkbox">
+                <input id="smash64stages" type="checkbox" checked> <span>Stages</span>
+              </label>
             </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <label class="checkbox">
+                <input id="smash64items" type="checkbox" checked> <span>Items</span>
+              </label>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <label class="checkbox">
+                <input id="smash64general" type="checkbox" checked> <span>General</span>
+              </label>
+            </div>
+          </div>
         </div>
-        <div class="row center">
-            <button id="smashIpsumBtn" class="btn waves-effect waves-light red darken-1" type="button">Let's Go
-                </button>
+
+        <div class="column">
+          <h3>Melee</h3>
+          <div class="field">
+            <div class="control">
+              <label class="checkbox">
+                <input id="meleecharacters" type="checkbox" checked> <span>Characters</span>
+              </label>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <label class="checkbox">
+                <input id="meleestages" type="checkbox" checked> <span>Stages</span>
+              </label>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <label class="checkbox">
+                <input id="meleeitems" type="checkbox" checked> <span>Items</span>
+              </label>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <label class="checkbox">
+                <input id="meleegeneral" type="checkbox" checked> <span>General</span>
+              </label>
+            </div>
+          </div>
         </div>
+
+        <div class="column">
+          <h3>Brawl</h3>
+          <div class="field">
+            <div class="control">
+              <label class="checkbox">
+                <input id="brawlcharacters" type="checkbox" checked> <span>Characters</span>
+              </label>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <label class="checkbox">
+                <input id="brawlstages" type="checkbox" checked> <span>Stages</span>
+              </label>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <label class="checkbox">
+                <input id="brawlitems" type="checkbox" checked> <span>Items</span>
+              </label>
+            </div>
+          </div>
+          <div class="field">
+            <div class="control">
+              <label class="checkbox">
+                <input id="brawlgeneral" type="checkbox" checked> <span>General</span>
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
 
+    <div class="container" id="numbers">
+      <div class="columns">
+        <div class="column">
+          <div class="field">
+            <label class="label"># of paragraphs</label>
+            <div class="control">
+              <input class="input" id="numParagraphs" name="number" type="number" value="4">
+            </div>
+          </div>
+        </div>
 
-<!--Parallax-->
-<div class="parallax-container">
-    <div class="parallax">
-        <img src="img/37Tih5.png">
+        <div class="column">
+          <div class="field">
+            <label class="label">Min sentences / paragraph</label>
+            <div class="control">
+              <input class="input" id="minSentences" name="minSentences" type="number" value="3">
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="field">
+            <label class="label">Max sentences / paragraph</label>
+            <div class="control">
+              <input class="input" id="maxSentences" name="maxSentences" type="number" value="7">
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</div>
+  </section>
 
-<!--Team-->
-<div class="section scrollspy" id="about">
+  <section class="hero" id="generator">
+    <div class="hero-body"> 
+
     <div class="container">
-        <h2 class="header ">About</h2>
-        <div class="row">
-            <div class="col s12 text">
-              <p>Placeholder text is a must if you are any kind of developer or designer. Why not smash it up a bit?</br>
-                SmashIpsum gives you all fun, nostalgia, and salt you get from Smash Bros while you pretend to work.</p>
-            </div>
-        </div>
+      <h1 class="title">Generator</h1>
+      <div id="SmashIpsum"></div>
     </div>
+
+    <div class="container has-text-centered">
+      <button id="smashIpsumBtn" class="button" type="button">Let's Go</button>
+    </div>
+  </div>
+</section>
+
+  <section class="section">
     <div class="container">
-        <h2 class="header ">Contributing</h2>
-        <div class="row">
-            <div class="col s12 text">
-              <p>The list of smash-related words can always be improved upon.</br>
-                If there's some new dank meme or content we are missing, please feel free to reach out.</br>
-                You can tweet, message us, or make a pull request on GitHub.</p>
-            </div>
-        </div>
+      <h1 class="title">Contributing</h1>
+      <p>The list of smash-related words can always be improved upon.</p>
+      <p>If there's some new dank meme or content we are missing, please feel free to reach out.</p>
+      <p>You can message us, or make a pull request on <a href="https://github.com/novacourtois/smashipsum">GitHub</a>.</p>  
     </div>
-</div>
+  </section>
 
-<!--Footer-->
-<footer id="contact" class="section page-footer default_color scrollspy">
-    <div class="container">  
-        <div class="row">
-            
-            <div class="col l4 s12">
-                <h5 class="white-text center">
-                <a href="https://twitter.com/novacourtois">
-                    Twitter
-                </a>
-                </h5>
-            </div>
-            <div class="col l4 s12">
-                <h5 class="white-text center">
-                    <a href="https://github.com/novacourtois/smashipsum">
-                        GitHub
-                    </a>
-                </h5>
-            </div>
-            <div class="col l4 s12">
-                <h5 class="white-text center">
-                    <a href="http://disregardingstandards.com">
-                        disregardingstandards.com
-                    </a>
-                </h5>
-            </div>
+  <section class="section">
+    <div class="container">
+      <form method="POST" action="https://formspree.io/novacourtois@gmail.com" _lpchecked="1">
 
-            <div class="col s12">
-                <form class="col s12" method="POST" action="https://formspree.io/novacourtois@gmail.com" _lpchecked="1">
-                    <div class="row">
-                        <div class="input-field col s6">
-                            <i class="mdi-action-account-circle prefix white-text"></i>
-                            <input required id="icon_prefix" name="name" type="text" class="validate white-text">
-                            <label for="icon_prefix" class="white-text">First Name</label>
-                        </div>
-                        <div class="input-field col s6">
-                            <i class="mdi-communication-email prefix white-text"></i>
-                            <input required id="icon_email" name="_replyto" type="email" class="validate white-text">
-                            <label for="icon_email" class="white-text">Email</label>
-                        </div>
-                        <div class="input-field col s12">
-                            <i class="mdi-editor-mode-edit prefix white-text"></i>
-                            <textarea required id="icon_prefix2" name="message" class="materialize-textarea white-text"></textarea>
-                            <label for="icon_prefix2" class="white-text">Message</label>
-                        </div>
-                        <div class="center">
-                            <button class="btn waves-effect waves-light red darken-1" type="submit">Let's Go
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
+        <div class="field">
+          <div class="control">
+            <input required class="input" name="name" type="text" placeholder="Name">
+          </div>
         </div>
-    </div>
-</footer>
 
-<script src="js/jquery-2.1.1.min.js"></script>
-<script src="js/materialize.min.js"></script>
-<script src="js/modernizr.js"></script>
-<script src="js/init.js"></script>
+        <div class="field">
+          <div class="control">
+            <input required class="input" name="_replyto" type="email" placeholder="Email">
+          </div>
+        </div>
+        
+        <div class="field">
+          <div class="control">
+            <textarea required class="textarea" name="message" placeholder="Message"></textarea>
+          </div>
+        </div>
+        <div class="container has-text-centered">
+          <button class="button" type="submit">Let's Go</button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <footer class="footer">
+    <div class="container">
+      <div class="content has-text-centered">
+        <p>
+          Created in <strong>ATX</strong> by
+          <a href="https://disregardingstandards.com">Disregarding Standards</a>.
+        </p>
+      </div>
+    </div>
+  </footer>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.js"></script>
+  <script src="js/init.js"></script>
 
 </body>
 </html>

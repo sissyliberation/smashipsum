@@ -7,55 +7,84 @@ var port = process.env.PORT || 8080;
 
 var latinDictionary = require(__dirname+'/lib/latin/dictionary').words;
 var smash64Dictionary = require(__dirname+'/lib/smash64/dictionary');
-var ssbmDictionary = require(__dirname+'/lib/ssbm/dictionary');
-var brawlDictionary = require(__dirname+'/lib/ssbm/dictionary');
+var meleeDictionary = require(__dirname+'/lib/melee/dictionary');
+var brawlDictionary = require(__dirname+'/lib/brawl/dictionary');
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname));
 
 app.get('/api/get/', function(req, res) {
-    shuffle(latinDictionary);
+  shuffle(latinDictionary);
 
-    var words = [].concat(
-      smash64Dictionary.characters,
-      smash64Dictionary.stages,
-      smash64Dictionary.items,
-      smash64Dictionary.general
-    );
+  var words = [];
 
-    words = words.concat(
-      ssbmDictionary.characters,
-      ssbmDictionary.stages,
-      ssbmDictionary.items,
-      ssbmDictionary.general
-    );
+  // smash 64
+  if (req.query.smash64.characters === "true") {
+    words = words.concat(smash64Dictionary.characters);
+  }
+  if (req.query.smash64.stages === "true") {
+    words = words.concat(smash64Dictionary.stages);
+  }
+  if (req.query.smash64.items === "true") {
+    words = words.concat(smash64Dictionary.items);
+  }
+  if (req.query.smash64.general === "true") {
+    words = words.concat(smash64Dictionary.general);
+  }
 
-    words = words.concat(
-      brawlDictionary.characters,
-      brawlDictionary.stages,
-      brawlDictionary.items,
-      brawlDictionary.general
-    );
+  // melee
+  if (req.query.melee.characters === "true") {
+    words = words.concat(meleeDictionary.characters);
+  }
+  if (req.query.melee.stages === "true") {
+    words = words.concat(meleeDictionary.stages);
+  }
+  if (req.query.melee.items === "true") {
+    words = words.concat(meleeDictionary.items);
+  }
+  if (req.query.melee.general === "true") {
+    words = words.concat(meleeDictionary.general);
+  }
 
-    var latin = latinDictionary.slice(0, words.length / 6);
+  // brawl
+  if (req.query.brawl.characters === "true") {
+    words = words.concat(brawlDictionary.characters);
+  }
+  if (req.query.brawl.stages === "true") {
+    words = words.concat(brawlDictionary.stages);
+  }
+  if (req.query.brawl.items === "true") {
+    words = words.concat(brawlDictionary.items);
+  }
+  if (req.query.brawl.general === "true") {
+    words = words.concat(brawlDictionary.general);
+  }
 
-    words = words.concat(latin);
+  // add pm here
 
-    var numUnits =  req.query.numUnits || 3;
+  // add smash4 here
 
-    var output = loremIpsum({
-      count:  numUnits,             // Number of words, sentences, or paragraphs to generate.
-      units: 'paragraphs',          // Generate words, sentences, or paragraphs.
-      sentenceLowerBound: 5,        // Minimum words per sentence.
-      sentenceUpperBound: 15,       // Maximum words per sentence.
-      paragraphLowerBound: 3,       // Minimum sentences per paragraph.
-      paragraphUpperBound: 7,       // Maximum sentences per paragraph.
-      format: 'html',               // Plain text or html
-      words: words,                 // Custom word dictionary. Uses dictionary.words (in lib/dictionary.js) by default.
-      random: Math.random           // A PRNG function. Uses Math.random by default
-    });
+  var latin = latinDictionary.slice(0, words.length / 4);
 
-    res.send(output);
+  words = words.concat(latin);
+
+  var numParagraphs =  parseInt(req.query.numParagraphs) || 4;
+  var minSentences =   parseInt(req.query.minSentences) || 3;
+  var maxSentences =   parseInt(req.query.maxSentences) || 7;
+
+  var output = loremIpsum({
+    count:  numParagraphs,             // Number of words, sentences, or paragraphs to generate.
+    units: 'paragraphs',          // Generate words, sentences, or paragraphs.
+    sentenceLowerBound: 5,        // Minimum words per sentence.
+    sentenceUpperBound: 15,       // Maximum words per sentence.
+    paragraphLowerBound: minSentences,       // Minimum sentences per paragraph.
+    paragraphUpperBound: maxSentences,       // Maximum sentences per paragraph.
+    format: 'html',               // Plain text or html
+    words: words,                 // Custom word dictionary. Uses dictionary.words (in lib/dictionary.js) by default.
+    random: Math.random           // A PRNG function. Uses Math.random by default
+  });
+
+  res.send(output);
 });
 
 console.log('server started at port '+port);
