@@ -9,6 +9,7 @@ var latinDictionary = require(__dirname+'/lib/latin/dictionary').words;
 var smash64Dictionary = require(__dirname+'/lib/smash64/dictionary');
 var meleeDictionary = require(__dirname+'/lib/melee/dictionary');
 var brawlDictionary = require(__dirname+'/lib/brawl/dictionary');
+var pmDictionary = require(__dirname+'/lib/pm/dictionary');
 var smash4Dictionary = require(__dirname+'/lib/smash4/dictionary');
 
 app.set('view engine', 'ejs');
@@ -61,9 +62,19 @@ app.get('/api/get/', function(req, res) {
   //   words = words.concat(brawlDictionary.general);
   // }
 
-  // add pm here
+  if (req.query.pm.characters === "true") {
+    words = words.concat(pmDictionary.characters);
+  }
+  if (req.query.pm.stages === "true") {
+    words = words.concat(pmDictionary.stages);
+  }
+  // if (req.query.pm.items === "true") {
+  //   words = words.concat(pmDictionary.items);
+  // }
+  // if (req.query.pm.general === "true") {
+  //   words = words.concat(pmDictionary.general);
+  // }
 
-  // add smash4 here
   if (req.query.smash4.characters === "true") {
     words = words.concat(smash4Dictionary.characters);
   }

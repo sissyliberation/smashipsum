@@ -20,6 +20,10 @@ $(document).ready(function(){
         stages:     $("#brawlstages").is(":checked"),
         items:      $("#brawlitems").is(":checked")
       },
+      pm:  {
+        characters: $("#pmcharacters").is(":checked"),
+        stages:     $("#pmstages").is(":checked")
+      },
       smash4:  {
         characters: $("#smash4characters").is(":checked"),
         stages:     $("#smash4stages").is(":checked"),
