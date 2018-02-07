@@ -9,6 +9,7 @@ var latinDictionary = require(__dirname+'/lib/latin/dictionary').words;
 var smash64Dictionary = require(__dirname+'/lib/smash64/dictionary');
 var meleeDictionary = require(__dirname+'/lib/melee/dictionary');
 var brawlDictionary = require(__dirname+'/lib/brawl/dictionary');
+var smash4Dictionary = require(__dirname+'/lib/smash4/dictionary');
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname));
@@ -28,9 +29,9 @@ app.get('/api/get/', function(req, res) {
   if (req.query.smash64.items === "true") {
     words = words.concat(smash64Dictionary.items);
   }
-  if (req.query.smash64.general === "true") {
-    words = words.concat(smash64Dictionary.general);
-  }
+  // if (req.query.smash64.general === "true") {
+  //   words = words.concat(smash64Dictionary.general);
+  // }
 
   // melee
   if (req.query.melee.characters === "true") {
@@ -42,9 +43,9 @@ app.get('/api/get/', function(req, res) {
   if (req.query.melee.items === "true") {
     words = words.concat(meleeDictionary.items);
   }
-  if (req.query.melee.general === "true") {
-    words = words.concat(meleeDictionary.general);
-  }
+  // if (req.query.melee.general === "true") {
+  //   words = words.concat(meleeDictionary.general);
+  // }
 
   // brawl
   if (req.query.brawl.characters === "true") {
@@ -56,13 +57,25 @@ app.get('/api/get/', function(req, res) {
   if (req.query.brawl.items === "true") {
     words = words.concat(brawlDictionary.items);
   }
-  if (req.query.brawl.general === "true") {
-    words = words.concat(brawlDictionary.general);
-  }
+  // if (req.query.brawl.general === "true") {
+  //   words = words.concat(brawlDictionary.general);
+  // }
 
   // add pm here
 
   // add smash4 here
+  if (req.query.smash4.characters === "true") {
+    words = words.concat(smash4Dictionary.characters);
+  }
+  if (req.query.smash4.stages === "true") {
+    words = words.concat(smash4Dictionary.stages);
+  }
+  if (req.query.smash4.items === "true") {
+    words = words.concat(smash4Dictionary.items);
+  }
+  // if (req.query.smash4.general === "true") {
+  //   words = words.concat(smash4Dictionary.general);
+  // }
 
   var latin = latinDictionary.slice(0, words.length / 4);
 
