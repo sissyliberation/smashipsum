@@ -88,7 +88,7 @@ app.get('/api/get/', function(req, res) {
   //   words = words.concat(smash4Dictionary.general);
   // }
 
-  var latin = latinDictionary.slice(0, words.length / 4);
+  var latin = latinDictionary.slice(0, words.length / 2);
 
   words = words.concat(latin);
 
