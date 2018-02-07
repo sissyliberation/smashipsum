@@ -8,21 +8,22 @@ $(document).ready(function(){
       smash64:  {
         characters: $("#smash64characters").is(":checked"),
         stages:     $("#smash64stages").is(":checked"),
-        items:      $("#smash64items").is(":checked"),
-        general:    $("#smash64general").is(":checked") 
+        items:      $("#smash64items").is(":checked")
       },
       melee:  {
       	characters: $("#meleecharacters").is(":checked"),
       	stages:     $("#meleestages").is(":checked"),
-      	items:      $("#meleeitems").is(":checked"),
-      	general:    $("#meleegeneral").is(":checked") 
+      	items:      $("#meleeitems").is(":checked") 
       },
       brawl:  {
-      	characters: $("#brawlcharacters").is(":checked"),
-      	stages:     $("#brawlstages").is(":checked"),
-      	items:      $("#brawlitems").is(":checked"),
-      	general:    $("#brawlgeneral").is(":checked") 
-      }
+        characters: $("#brawlcharacters").is(":checked"),
+        stages:     $("#brawlstages").is(":checked"),
+        items:      $("#brawlitems").is(":checked")
+      },
+      smash4:  {
+        characters: $("#smash4characters").is(":checked"),
+        stages:     $("#smash4stages").is(":checked"),
+        items:      $("#smash4items").is(":checked")      }
     };
 
     $.get( "api/get/", params, function( data ) {
