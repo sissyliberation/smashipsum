@@ -93,19 +93,21 @@ app.get('/api/get/', function(req, res) {
   words = words.concat(latin);
 
   var numParagraphs =  parseInt(req.query.numParagraphs) || 4;
-  var minSentences =   parseInt(req.query.minSentences) || 3;
-  var maxSentences =   parseInt(req.query.maxSentences) || 7;
+  var minWords      =   parseInt(req.query.minWords) || 5;
+  var maxWords      =   parseInt(req.query.maxWords) || 15;
+  var minSentences  =   parseInt(req.query.minSentences) || 3;
+  var maxSentences  =   parseInt(req.query.maxSentences) || 7;
 
   var output = loremIpsum({
-    count:  numParagraphs,             // Number of words, sentences, or paragraphs to generate.
-    units: 'paragraphs',          // Generate words, sentences, or paragraphs.
-    sentenceLowerBound: 5,        // Minimum words per sentence.
-    sentenceUpperBound: 15,       // Maximum words per sentence.
-    paragraphLowerBound: minSentences,       // Minimum sentences per paragraph.
-    paragraphUpperBound: maxSentences,       // Maximum sentences per paragraph.
-    format: 'html',               // Plain text or html
-    words: words,                 // Custom word dictionary. Uses dictionary.words (in lib/dictionary.js) by default.
-    random: Math.random           // A PRNG function. Uses Math.random by default
+    count:  numParagraphs,              // Number of words, sentences, or paragraphs to generate.
+    units: 'paragraphs',                // Generate words, sentences, or paragraphs.
+    sentenceLowerBound: minWords,       // Minimum words per sentence.
+    sentenceUpperBound: maxWords,       // Maximum words per sentence.
+    paragraphLowerBound: minSentences,  // Minimum sentences per paragraph.
+    paragraphUpperBound: maxSentences,  // Maximum sentences per paragraph.
+    format: 'html',                     // Plain text or html
+    words: words,                       // Custom word dictionary. Uses dictionary.words (in lib/dictionary.js) by default.
+    random: Math.random                 // A PRNG function. Uses Math.random by default
   });
 
   res.send(output);

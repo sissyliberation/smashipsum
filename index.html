@@ -265,11 +265,21 @@
 
     <div class="container" id="numbers">
       <div class="columns">
+        
         <div class="column">
           <div class="field">
-            <label class="label"># of paragraphs</label>
+            <label class="label">Min words / sentence</label>
             <div class="control">
-              <input class="input" id="numParagraphs" name="number" type="number" value="4">
+              <input class="input" id="minWords" name="minWords" type="number" value="5">
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="field">
+            <label class="label">Max words / sentence</label>
+            <div class="control">
+              <input class="input" id="maxWords" name="maxWords" type="number" value="15">
             </div>
           </div>
         </div>
@@ -288,6 +298,15 @@
             <label class="label">Max sentences / paragraph</label>
             <div class="control">
               <input class="input" id="maxSentences" name="maxSentences" type="number" value="7">
+            </div>
+          </div>
+        </div>
+
+        <div class="column">
+          <div class="field">
+            <label class="label"># of paragraphs</label>
+            <div class="control">
+              <input class="input" id="numParagraphs" name="number" type="number" value="4">
             </div>
           </div>
         </div>

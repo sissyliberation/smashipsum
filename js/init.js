@@ -3,8 +3,10 @@ $(document).ready(function(){
 
     var params = {
 			numParagraphs:  $("#numParagraphs").val(),
-			minSentences:   $("#minSentences").val(),
-			maxSentences:   $("#maxSentences").val(),
+			minWords:       $("#minWords").val(),
+      maxWords:       $("#maxWords").val(),
+      minSentences:   $("#minSentences").val(),
+      maxSentences:   $("#maxSentences").val(),
       smash64:  {
         characters: $("#smash64characters").is(":checked"),
         stages:     $("#smash64stages").is(":checked"),
