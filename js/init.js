@@ -24,7 +24,8 @@ $(document).ready(function(){
       },
       pm:  {
         characters: $("#pmcharacters").is(":checked"),
-        stages:     $("#pmstages").is(":checked")
+        stages:     $("#pmstages").is(":checked"),
+        items:      $("#pmitems").is(":checked")
       },
       smash4:  {
         characters: $("#smash4characters").is(":checked"),

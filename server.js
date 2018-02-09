@@ -68,9 +68,11 @@ app.get('/api/get/', function(req, res) {
   if (req.query.pm.stages === "true") {
     words = words.concat(pmDictionary.stages);
   }
-  // if (req.query.pm.items === "true") {
-  //   words = words.concat(pmDictionary.items);
-  // }
+  // pm items are exactly the same as brawl,
+  // so it's just stored in brawl dictionary
+  if (req.query.pm.items === "true") {
+    words = words.concat(brawlDictionary.items);
+  }
   // if (req.query.pm.general === "true") {
   //   words = words.concat(pmDictionary.general);
   // }
