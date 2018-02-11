@@ -55,3 +55,19 @@ label {
     }
   }
 }
+
+.navbar-burger {
+  border: none;
+
+  &:hover {
+    background: transparent;
+
+    span {
+      background: black;
+    }
+  }
+
+  span {
+    background: #d8dbe2;
+  }
+}
