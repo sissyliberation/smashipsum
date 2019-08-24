@@ -1,5 +1,6 @@
-var express = require('express'); 
-var request = require('request');
+var express = require('express');
+const favicon = require('express-favicon');
+const path = require('path');
 var loremIpsum = require('lorem-ipsum');
 
 var app = express();
@@ -14,6 +15,16 @@ var smash4Dictionary = require(__dirname+'/lib/smash4/dictionary');
 
 app.set('view engine', 'ejs');
 app.use(express.static(__dirname));
+
+if (process.env.NODE_ENV === "production") {
+  const prodPath = '/client/build/';
+  app.use(favicon(__dirname + `${prodPath}/logo.png`));
+
+  app.use(express.static(path.join(__dirname, prodPath)));
+  app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, `${prodPath}index.html`));
+  });  
+}
 
 app.get('/api/get/', function(req, res) {
   shuffle(latinDictionary);
@@ -115,8 +126,7 @@ app.get('/api/get/', function(req, res) {
   res.send(output);
 });
 
-console.log('server started at port '+port);
-app.listen(port);
+app.listen(port, () => console.log(talk.bold(`listening on port ${port
 
 function shuffle(array) {
   var counter = array.length;
