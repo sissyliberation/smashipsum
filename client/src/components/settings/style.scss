@@ -1,0 +1,44 @@
+.settings {
+	$e : &;
+
+	&__content {
+		display: flex;
+		justify-content: space-between;
+
+		& + & {
+			margin-top: 2em;
+		}
+	}
+
+	&__five {
+		#{$e}__instance {
+				width: calc((100% - 100px) / 5);
+			}
+	}
+
+	&__six {
+		#{$e}__instance {
+				width: calc((100% - 120px) / 6);
+			}
+	}
+
+	&__instance {
+		$e: &;
+		display: flex;
+		flex-direction: column;
+		padding: 0 20px;
+
+		#{$e}__title {
+			margin-bottom: .5em;
+			text-transform: uppercase;
+		}
+
+		.ant-input-number {
+			width: 100%;
+		}
+
+		.ant-checkbox-wrapper {
+			margin: 0;
+		}
+	}
+}
