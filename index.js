@@ -1,19 +1,18 @@
-var express = require('express');
+const express = require('express');
 const favicon = require('express-favicon');
 const path = require('path');
-var loremIpsum = require('lorem-ipsum');
+const loremIpsum = require('lorem-ipsum');
 
-var app = express();
-var port = process.env.PORT || 8080;
+const app = express();
+const port = process.env.PORT || 8080;
 
-var latinDictionary = require(__dirname+'/lib/latin/dictionary').words;
-var smash64Dictionary = require(__dirname+'/lib/smash64/dictionary');
-var meleeDictionary = require(__dirname+'/lib/melee/dictionary');
-var brawlDictionary = require(__dirname+'/lib/brawl/dictionary');
-var pmDictionary = require(__dirname+'/lib/pm/dictionary');
-var smash4Dictionary = require(__dirname+'/lib/smash4/dictionary');
+const latinDictionary = require(__dirname+'/lib/latin/dictionary').words;
+const smash64Dictionary = require(__dirname+'/lib/smash64/dictionary');
+const meleeDictionary = require(__dirname+'/lib/melee/dictionary');
+const brawlDictionary = require(__dirname+'/lib/brawl/dictionary');
+const pmDictionary = require(__dirname+'/lib/pm/dictionary');
+const smash4Dictionary = require(__dirname+'/lib/smash4/dictionary');
 
-app.set('view engine', 'ejs');
 app.use(express.static(__dirname));
 
 if (process.env.NODE_ENV === "production") {
@@ -26,78 +25,80 @@ if (process.env.NODE_ENV === "production") {
   });  
 }
 
-app.get('/api/get/', function(req, res) {
+app.get('/api/ipsum/', function(req, res) {
   shuffle(latinDictionary);
+  let words = [];
+  let settings = JSON.parse(JSON.stringify(req.query));
 
-  var words = [];
+  console.log(settings);
 
   // smash 64
-  if (req.query.smash64.characters === "true") {
+  if (settings.smash64.characters === "true") {
     words = words.concat(smash64Dictionary.characters);
   }
-  if (req.query.smash64.stages === "true") {
+  if (settings.smash64.stages === "true") {
     words = words.concat(smash64Dictionary.stages);
   }
-  if (req.query.smash64.items === "true") {
+  if (settings.smash64.items === "true") {
     words = words.concat(smash64Dictionary.items);
   }
-  // if (req.query.smash64.general === "true") {
+  // if (settings.smash64.general === "true") {
   //   words = words.concat(smash64Dictionary.general);
   // }
 
   // melee
-  if (req.query.melee.characters === "true") {
+  if (settings.melee.characters === "true") {
     words = words.concat(meleeDictionary.characters);
   }
-  if (req.query.melee.stages === "true") {
+  if (settings.melee.stages === "true") {
     words = words.concat(meleeDictionary.stages);
   }
-  if (req.query.melee.items === "true") {
+  if (settings.melee.items === "true") {
     words = words.concat(meleeDictionary.items);
   }
-  // if (req.query.melee.general === "true") {
+  // if (settings.melee.general === "true") {
   //   words = words.concat(meleeDictionary.general);
   // }
 
   // brawl
-  if (req.query.brawl.characters === "true") {
+  if (settings.brawl.characters === "true") {
     words = words.concat(brawlDictionary.characters);
   }
-  if (req.query.brawl.stages === "true") {
+  if (settings.brawl.stages === "true") {
     words = words.concat(brawlDictionary.stages);
   }
-  if (req.query.brawl.items === "true") {
+  if (settings.brawl.items === "true") {
     words = words.concat(brawlDictionary.items);
   }
-  // if (req.query.brawl.general === "true") {
+  // if (settings.brawl.general === "true") {
   //   words = words.concat(brawlDictionary.general);
   // }
 
-  if (req.query.pm.characters === "true") {
+  if (settings.pm.characters === "true") {
     words = words.concat(pmDictionary.characters);
   }
-  if (req.query.pm.stages === "true") {
+  if (settings.pm.stages === "true") {
     words = words.concat(pmDictionary.stages);
   }
   // pm items are exactly the same as brawl,
   // so it's just stored in brawl dictionary
-  if (req.query.pm.items === "true") {
+  if (settings.pm.items === "true") {
     words = words.concat(brawlDictionary.items);
   }
-  // if (req.query.pm.general === "true") {
+  // if (settings.pm.general === "true") {
   //   words = words.concat(pmDictionary.general);
   // }
 
-  if (req.query.smash4.characters === "true") {
+  if (settings.smash4.characters === "true") {
     words = words.concat(smash4Dictionary.characters);
   }
-  if (req.query.smash4.stages === "true") {
+  if (settings.smash4.stages === "true") {
     words = words.concat(smash4Dictionary.stages);
   }
-  if (req.query.smash4.items === "true") {
+  if (settings.smash4.items === "true") {
     words = words.concat(smash4Dictionary.items);
   }
-  // if (req.query.smash4.general === "true") {
+  // if (settings.smash4.general === "true") {
   //   words = words.concat(smash4Dictionary.general);
   // }
 
@@ -105,11 +106,11 @@ app.get('/api/get/', function(req, res) {
 
   words = words.concat(latin);
 
-  var numParagraphs =  parseInt(req.query.numParagraphs) || 4;
-  var minWords      =   parseInt(req.query.minWords) || 5;
-  var maxWords      =   parseInt(req.query.maxWords) || 15;
-  var minSentences  =   parseInt(req.query.minSentences) || 3;
-  var maxSentences  =   parseInt(req.query.maxSentences) || 7;
+  var numParagraphs =  parseInt(settings.numParagraphs) || 4;
+  var minWords      =   parseInt(settings.minWords) || 5;
+  var maxWords      =   parseInt(settings.maxWords) || 15;
+  var minSentences  =   parseInt(settings.minSentences) || 3;
+  var maxSentences  =   parseInt(settings.maxSentences) || 7;
 
   var output = loremIpsum({
     count:  numParagraphs,              // Number of words, sentences, or paragraphs to generate.
@@ -123,10 +124,12 @@ app.get('/api/get/', function(req, res) {
     random: Math.random                 // A PRNG function. Uses Math.random by default
   });
 
+  console.log(output);
+
   res.send(output);
 });
 
-app.listen(port, () => console.log(talk.bold(`listening on port ${port
+app.listen(port, () => console.log(`listening on port ${port}`));
 
 function shuffle(array) {
   var counter = array.length;
