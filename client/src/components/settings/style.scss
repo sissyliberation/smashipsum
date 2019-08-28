@@ -1,44 +1,99 @@
+@import '../../variables';
+
 .settings {
-	$e : &;
+  $e : &;
 
-	&__content {
-		display: flex;
-		justify-content: space-between;
+  @include container;
 
-		& + & {
-			margin-top: 2em;
-		}
-	}
+  &__content {
+    @include tablet {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
 
-	&__five {
-		#{$e}__instance {
-				width: calc((100% - 100px) / 5);
-			}
-	}
+    & + & {
+      margin-top: 2em;
+    }
 
-	&__six {
-		#{$e}__instance {
-				width: calc((100% - 120px) / 6);
-			}
-	}
+    &--games {
+      @include tablet {
 
-	&__instance {
-		$e: &;
-		display: flex;
-		flex-direction: column;
-		padding: 0 20px;
+        #{$e}__instance {
+          width: calc((100% - 120px) / 6);
+        } 
+      }
+    }
 
-		#{$e}__title {
-			margin-bottom: .5em;
-			text-transform: uppercase;
-		}
+    &--general {
+      @include tablet {
+      
+        #{$e}__instance {
+          width: calc((100% - 20px) / 2);
 
-		.ant-input-number {
-			width: 100%;
-		}
+          &:nth-child(n+3) {
+            margin-top: 2em;
+          }
+        } 
+      }
 
-		.ant-checkbox-wrapper {
-			margin: 0;
-		}
-	}
+      @include desktop {
+      
+        #{$e}__instance {
+          width: calc((100% - 40px) / 3);
+
+          &:nth-child(n+3) {
+            margin-top: 0em;
+          }
+
+          &:nth-child(n+4) {
+            margin-top: 2em;
+          }
+        } 
+      }
+    }
+  }
+
+  &__instance {
+    $e: &;
+    display: flex;
+    flex-wrap: wrap;
+
+    &__title {
+      @include label;
+
+      flex: 0 0 100%;
+    }
+
+    .ant-input-number {
+      width: 100%;
+    }
+
+    .ant-checkbox-wrapper {
+      margin: 0;
+      flex: 1;
+
+      + .ant-checkbox-wrapper {
+        margin-top: .5em;
+      }
+    }
+
+    @include tablet {
+      
+      flex-direction: column;
+      flex-wrap: nowrap;
+
+      &__title {
+        flex: 0 0 0;
+      }
+    }
+
+    & + & {
+      margin-top: 1.5em;
+
+      @include tablet {
+        margin-top: 0;
+      }
+    }
+  }
 }

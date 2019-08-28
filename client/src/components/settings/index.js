@@ -1,7 +1,8 @@
 import React from 'react';
-import { Checkbox, InputNumber } from 'antd';
-
+import { Checkbox, InputNumber, Select } from 'antd';
 import './style.scss';
+
+const { Option } = Select;
 
 export default function Settings(props) {
 
@@ -10,7 +11,7 @@ export default function Settings(props) {
   return (
     <div className="settings">
       <h2>Settings</h2>
-      <div className="settings__content settings__six">
+      <div className="settings__content settings__content--games">
         <div className="settings__instance">
           <div className="settings__instance__title">64</div>
           <Checkbox instance={"smash64"} name={"characters"} checked={props.smash64.characters} onChange={props.onCheckboxCheck}>Characters</Checkbox>
@@ -48,7 +49,7 @@ export default function Settings(props) {
           <Checkbox instance={"ultimate"} name={"items"} checked={props.ultimate.items} onChange={props.onCheckboxCheck}>Items</Checkbox>
         </div>
       </div>
-      <div className="settings__content settings__five">
+      <div className="settings__content settings__content--general">
         <div className="settings__instance">
           <div className="settings__instance__title">min words / sentence</div>
           <InputNumber name={"minWords"} min={1} value={props.minWords} defaultValue={props.minWords} onChange={props.onNumberChange("minWords")} />
@@ -69,6 +70,14 @@ export default function Settings(props) {
         <div className="settings__instance">
           <div className="settings__instance__title"># of paragraphs</div>
           <InputNumber name={"numParagraphs"} min={1} value={props.numParagraphs} defaultValue={props.numParagraphs} onChange={props.onNumberChange("numParagraphs")} />
+        </div>
+        <div className="settings__instance">
+          <div className="settings__instance__title">format</div>
+          <Select defaultValue="text">
+            <Option value="text">Plain Text</Option>
+            <Option value="div">divs</Option>
+            <Option value="paragraphs">paragraphs</Option>
+          </Select>
         </div>
       </div>
     </div>

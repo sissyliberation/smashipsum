@@ -1,0 +1,34 @@
+$color-main: #577590;
+
+$screen-tablet: 900px;
+$screen-desktop: 1150px;
+
+$font-secondary: 'IBM Plex Mono', monospace;
+
+@mixin tablet {
+  @media (min-width: $screen-tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $screen-desktop) {
+    @content;
+  }
+}
+
+@mixin container {
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+}
+
+@mixin label {
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: .5em;
+  font-family: $font-secondary;
+  font-weight: 700;
+  color: $color-main;
+}
