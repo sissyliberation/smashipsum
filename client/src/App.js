@@ -4,9 +4,10 @@ import axios from 'axios';
 import { Layout } from 'antd';
 import Settings from './components/settings';
 import Ipsum from './components/ipsum';
+import Header from './components/header';
 import Footer from './components/footer';
 
-const { Header, Content } = Layout;
+const { Content } = Layout;
 
 class App extends React.Component {
   constructor(props) {
@@ -116,12 +117,12 @@ class App extends React.Component {
   render() {
     return (
       <Layout>
-        <Header>header</Header>
+        <Header />
         <Content>
           <Settings {...this.state}
             onCheckboxCheck={this.onCheckboxCheck}
             onNumberChange={this.onNumberChange}
-            onSelectChange={this.onSelectChange} />
+            onSelectChange={this.onSelectChange}/>
 
           <Ipsum ipsum={this.state.ipsum} getData={this.getData} />
         </Content>

@@ -5,7 +5,7 @@ import './style.scss';
 
 export default function Ipsum(props) {
   return (
-    <div className="ipsum">
+    <div className="ipsum" id="generator">
       <h2>Smash Ipsum Generator</h2>
       <div className="ipsum__content">
         <pre>{ props.ipsum }</pre>

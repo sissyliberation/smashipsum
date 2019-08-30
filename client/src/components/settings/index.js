@@ -9,7 +9,7 @@ export default function Settings(props) {
   
 
   return (
-    <div className="settings">
+    <div className="settings" id="settings">
       <h2>Settings</h2>
       <div className="settings__content settings__content--games">
         <div className="settings__instance">

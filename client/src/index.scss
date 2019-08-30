@@ -24,6 +24,7 @@ a {
   position: relative;
   display: inline-block;
   color: $color-main;
+  line-height: 1.3;
 
   &:after {
     content:'';

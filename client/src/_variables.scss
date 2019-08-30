@@ -40,3 +40,8 @@ $font-alt: 'IBM Plex Mono', monospace;
 @mixin base {
   padding: 2.5rem 1.5rem;
 }
+
+@mixin layout-base {
+  margin: 0;
+  padding: 1.5rem;
+}

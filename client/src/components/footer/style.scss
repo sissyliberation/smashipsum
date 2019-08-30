@@ -1,13 +1,15 @@
 @import '../../variables';
 
 .footer {
-  .container {
-    @include container;
-  }
-  
+  @include layout-base;
   @include label;
+  margin: 0;
   text-align: right;
   background-color: $color-dark;
   color: $color-lite;
   border-top: 2px solid $color-main;
+  
+  &__container {
+    @include container;
+  }
 }
