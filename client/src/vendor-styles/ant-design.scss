@@ -82,3 +82,22 @@
     color: $color-lite;
   }
 }
+
+// button
+.ant-btn {
+  @include label;
+  width: 100%;
+  background-color: transparent;
+  color: $color-lite;
+
+  &:hover,
+  &:focus {
+    color: $color-main;
+    background-color: transparent;
+    border-color: $color-main;
+  }
+
+  @include tablet {
+    width: auto;
+  }
+}

@@ -7,6 +7,7 @@
   @include base;
 
   &__content {
+    margin-top: 2em;
     @include tablet {
       display: flex;
       flex-wrap: wrap;

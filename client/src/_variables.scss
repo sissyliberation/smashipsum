@@ -1,5 +1,5 @@
-// $color-main: #577590;
 $color-main: #2AF5FF;
+// $color-main: #72F3F9;
 $color-dark: #000;
 $color-lite: #fff;
 
@@ -25,7 +25,6 @@ $font-main: 'Merriweather', serif;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 20px;
 }
 
 @mixin label {
@@ -38,5 +37,5 @@ $font-main: 'Merriweather', serif;
 }
 
 @mixin base {
-  padding: 2.5em 0;
+  padding: 2.5rem 1.5rem;
 }

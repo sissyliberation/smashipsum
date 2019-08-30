@@ -5,14 +5,14 @@ import './style.scss';
 
 export default function Ipsum(props) {
   return (
-    <div className="smash-ipsum">
+    <div className="ipsum">
       <h2>Smash Ipsum Generator</h2>
-      <div className="smash-ipsum__content">
+      <div className="ipsum__content">
         { props.ipsum }
       </div>
 
-      <div className="smash-ipsum__cta">
-        <Button onClick={props.getData}>Ghost</Button>
+      <div className="ipsum__cta">
+        <Button onClick={props.getData}>Let's Go</Button>
       </div>
     </div>
    );
