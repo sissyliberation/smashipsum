@@ -1,0 +1,151 @@
+import React from 'react';
+import ReactGA from 'react-ga';
+import axios from 'axios';
+import { Layout } from 'antd';
+
+import Header from './components/header';
+import Hero from './components/hero';
+import Footer from './components/footer';
+
+import Settings from './components/settings';
+import Ipsum from './components/ipsum';
+
+import './app.scss';
+
+const { Content } = Layout;
+
+class App extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      ipsum: null,
+      minWords:       5,
+      maxWords:       15,
+      minSentences:   3,
+      maxSentences:   7,
+      numParagraphs:  4,
+      format:         'text',
+      smash64:  {
+        characters: true,
+        stages:     true,
+        items:      true,
+      },
+      melee:  {
+        characters: true,
+        stages:     true,
+        items:      true,
+      },
+      brawl:  {
+        characters: true,
+        stages:     true,
+        items:      true,
+      },
+      pm:  {
+        characters: true,
+        stages:     true,
+        items:      true,
+      },
+      smash4:  {
+        characters: true,
+        stages:     true,
+        items:      true,
+      },
+      ultimate: {
+        characters: true,
+        stages:     true,
+        items:      true,
+      }
+    };
+  }
+
+  getData = () => {
+
+    if (this.state) {
+      const settings = {
+        numParagraphs:  this.state.numParagraphs,
+        minWords:       this.state.minWords,
+        maxWords:       this.state.maxWords,
+        minSentences:   this.state.minSentences,
+        maxSentences:   this.state.maxSentences,
+        format:         this.state.format,
+        smash64:        this.state.smash64,
+        melee:          this.state.melee,
+        brawl:          this.state.brawl,
+        pm:             this.state.pm,
+        smash4:         this.state.smash4,
+        ultimate:       this.state.ultimate
+      };
+
+      axios.get('/api/ipsum', {
+        params: settings
+      })
+      .then(res => {
+        let { ipsum } = res.data;
+
+        this.setState({
+          ipsum: ipsum
+        }, () => {
+          ReactGA.event({
+            category: 'Ipsum',
+            action: 'Generate Text'
+          });
+        })
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    }
+  }
+
+  onCheckboxCheck = (e) => {
+    let { instance, name, checked } = e.target;
+
+    this.setState({
+      [instance]: {
+        ...this.state[instance],
+        [name]: checked
+      }
+    })
+  }
+
+  onSelectChange = (name) => (value) => {
+    this.setState({
+      [name]: value
+    })
+  }
+
+  onNumberChange = (name) => (value) => {
+    this.setState({
+      [name]: value
+    })
+  }
+
+  componentDidMount() {
+    this.getData();
+    ReactGA.initialize('UA-113771362-1');
+    ReactGA.pageview('/');
+  }
+
+  render() {
+    return (
+      <Layout>
+        <Header />
+        <Content>
+          <Hero />
+          
+          <Settings {...this.state}
+            onCheckboxCheck={this.onCheckboxCheck}
+            onNumberChange={this.onNumberChange}
+            onSelectChange={this.onSelectChange}/>
+
+          <Ipsum ipsum={this.state.ipsum} getData={this.getData} />
+        </Content>
+        <Footer />
+        
+      </Layout>
+    );
+  }
+}
+
+export default App;

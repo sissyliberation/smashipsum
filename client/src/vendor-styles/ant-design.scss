@@ -1,0 +1,111 @@
+@import '../variables';
+
+// layout
+.ant-layout {
+  background-color: $color-dark;
+}
+
+// checkbox
+.ant-checkbox-wrapper {
+  .ant-checkbox {
+    .ant-checkbox-inner {
+      background-color: $color-dark;
+      border-color: $color-lite;
+    }
+    + span {
+      color: $color-lite;
+    }
+  }
+
+  .ant-checkbox-checked {
+    .ant-checkbox-inner {
+      background-color: $color-main;
+      border-color: $color-main;
+
+      &:after {
+        border-color: $color-dark;
+      }
+    }
+
+    &:after {
+      border-color: $color-main;
+    }
+  }
+}
+
+.ant-checkbox-wrapper:hover .ant-checkbox-inner,
+.ant-checkbox:hover .ant-checkbox-inner,
+.ant-checkbox-input:focus + .ant-checkbox-inner {
+  border-color: $color-main;
+}
+
+// input number
+.ant-input-number {
+  background-color: $color-dark;
+  border-color: $color-lite;
+  color: $color-lite;
+
+  .ant-input-number-handler-wrap {
+    background-color: transparent;
+  }
+
+  .ant-input-number-handler-up-inner,
+  .ant-input-number-handler-down-inner {
+    color: rgba($color-lite, 0.75);
+  }
+
+  &:hover {
+    border-color: $color-main;
+  }
+}
+
+.ant-input-number-focused {
+  box-shadow: 0 0 0 2px rgba($color-main, 0.2)
+}
+
+.ant-input-number-handler:hover .ant-input-number-handler-up-inner,
+.ant-input-number-handler:hover .ant-input-number-handler-down-inner {
+  color: $color-main;
+}
+
+// select
+.ant-select {
+  width: 100%;
+  .ant-select-selection {
+    background-color: $color-dark;
+    border-color: $color-lite;
+    color: $color-lite;
+
+    &:hover {
+      border-color: $color-main;
+    }
+
+    .ant-select-focused {
+      border-color: $color-main;
+      box-shadow: 0 0 0 2px rgba($color-main, 0.2)
+    }
+  }
+
+  .ant-select-arrow {
+    color: $color-lite;
+  }
+}
+
+// button
+.ant-btn {
+  @include label;
+  width: 100%;
+  background-color: transparent;
+  color: $color-lite;
+
+  &:hover,
+  &:focus {
+    color: $color-main;
+    background-color: transparent;
+    border-color: $color-main;
+  }
+
+  @include tablet {
+    width: auto;
+  }
+}

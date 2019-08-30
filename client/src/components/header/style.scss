@@ -1,0 +1,42 @@
+@import '../../variables';
+
+.header {
+  @include layout-base;
+  @include label;
+  text-align: right;
+  background-color: $color-dark;
+  color: $color-lite;
+  height: 100%;
+  line-height: 1;
+
+  &__container {
+    @include container;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__link {
+    margin-left: 2em;
+
+    &:first-child {
+      margin-left: 0;
+    }
+  }
+
+  &__home-link {
+    color: $color-lite;
+
+    span {
+      color: $color-main;
+    }
+
+    &:hover,
+    &:focus {
+      color: $color-lite;
+    }
+
+    &:after {
+      display: none;
+    }
+  }
+}

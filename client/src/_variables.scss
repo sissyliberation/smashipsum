@@ -1,0 +1,47 @@
+$color-main: #2AF5FF;
+// $color-main: #72F3F9;
+$color-dark: #000;
+$color-lite: #fff;
+
+$screen-tablet: 800px;
+$screen-desktop: 1080px;
+
+$font-main: 'Merriweather', serif;
+$font-alt: 'IBM Plex Mono', monospace;
+
+@mixin tablet {
+  @media (min-width: $screen-tablet) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: $screen-desktop) {
+    @content;
+  }
+}
+
+@mixin container {
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+@mixin label {
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  margin-bottom: .5em;
+  font-family: $font-alt;
+  font-weight: 700;
+  color: $color-main;
+}
+
+@mixin base {
+  padding: 2.5rem 1.5rem;
+}
+
+@mixin layout-base {
+  margin: 0;
+  padding: 1.5rem;
+}

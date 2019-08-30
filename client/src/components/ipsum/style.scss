@@ -1,0 +1,23 @@
+@import '../../variables';
+
+.ipsum {
+  @include container;
+  @include base;
+
+  &__content {
+    margin-top: 2em;
+    font-style: italic;
+    font-size: 1.1em;
+  }
+
+  pre {
+    font-family: $font-main;
+    overflow: hidden;
+    white-space: pre-wrap;
+  }
+
+  &__cta {
+    margin-top: 2em;
+    text-align: center;
+  }
+}
