@@ -25,27 +25,27 @@ export default function Hero(props) {
 
         <div className="hero__content hero__images">
           <div className="hero__image">
-            <img className="hero__img" src={logo64} />
+            <img className="hero__img" src={logo64} alt="Super Smash Bros logo" />
           </div>
 
           <div className="hero__image">
-            <img className="hero__img" src={logoMelee} />
+            <img className="hero__img" src={logoMelee} alt="Super Smash Bros Melee logo" />
           </div>
 
           <div className="hero__image">
-            <img className="hero__img" src={logoBrawl} />
+            <img className="hero__img" src={logoBrawl} alt="Super Smash Bros Brawl logo" />
           </div>
 
           <div className="hero__image">
-            <img className="hero__img" src={logoPm} />
+            <img className="hero__img" src={logoPm} alt="Project M logo" />
           </div>
 
           <div className="hero__image">
-            <img className="hero__img" src={logoWiiu} />
+            <img className="hero__img" src={logoWiiu} alt="Super Smash Bros WiiU logo" />
           </div>
 
           <div className="hero__image">
-            <img className="hero__img" src={logoUltimate} />
+            <img className="hero__img" src={logoUltimate} alt="Smash Ultimate logo" />
           </div>
         </div>
       </div>
