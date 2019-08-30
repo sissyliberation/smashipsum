@@ -5,9 +5,6 @@ import './style.scss';
 const { Option } = Select;
 
 export default function Settings(props) {
-
-  
-
   return (
     <div className="settings" id="settings">
       <h2>Settings</h2>

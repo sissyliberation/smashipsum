@@ -66,11 +66,12 @@ class App extends React.Component {
         minSentences:   this.state.minSentences,
         maxSentences:   this.state.maxSentences,
         format:         this.state.format,
-        smash64: this.state.smash64,
-        melee: this.state.melee,
-        brawl: this.state.brawl,
-        pm: this.state.pm,
-        smash4: this.state.smash4
+        smash64:        this.state.smash64,
+        melee:          this.state.melee,
+        brawl:          this.state.brawl,
+        pm:             this.state.pm,
+        smash4:         this.state.smash4,
+        ultimate:       this.state.ultimate
       };
 
       axios.get('/api/ipsum', {

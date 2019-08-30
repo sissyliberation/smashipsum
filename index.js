@@ -12,6 +12,7 @@ const meleeDictionary = require(__dirname+'/lib/melee/dictionary');
 const brawlDictionary = require(__dirname+'/lib/brawl/dictionary');
 const pmDictionary = require(__dirname+'/lib/pm/dictionary');
 const smash4Dictionary = require(__dirname+'/lib/smash4/dictionary');
+const ultimateDictionary = require(__dirname+'/lib/ultimate/dictionary');
 
 app.use(express.static(__dirname));
 
@@ -40,9 +41,6 @@ app.get('/api/ipsum/', function(req, res) {
   if (settings.smash64.items === "true") {
     words = words.concat(smash64Dictionary.items);
   }
-  // if (settings.smash64.general === "true") {
-  //   words = words.concat(smash64Dictionary.general);
-  // }
 
   // melee
   if (settings.melee.characters === "true") {
@@ -54,9 +52,6 @@ app.get('/api/ipsum/', function(req, res) {
   if (settings.melee.items === "true") {
     words = words.concat(meleeDictionary.items);
   }
-  // if (settings.melee.general === "true") {
-  //   words = words.concat(meleeDictionary.general);
-  // }
 
   // brawl
   if (settings.brawl.characters === "true") {
@@ -68,10 +63,8 @@ app.get('/api/ipsum/', function(req, res) {
   if (settings.brawl.items === "true") {
     words = words.concat(brawlDictionary.items);
   }
-  // if (settings.brawl.general === "true") {
-  //   words = words.concat(brawlDictionary.general);
-  // }
 
+  // pm
   if (settings.pm.characters === "true") {
     words = words.concat(pmDictionary.characters);
   }
@@ -83,10 +76,8 @@ app.get('/api/ipsum/', function(req, res) {
   if (settings.pm.items === "true") {
     words = words.concat(brawlDictionary.items);
   }
-  // if (settings.pm.general === "true") {
-  //   words = words.concat(pmDictionary.general);
-  // }
 
+  // smash 4
   if (settings.smash4.characters === "true") {
     words = words.concat(smash4Dictionary.characters);
   }
@@ -96,9 +87,17 @@ app.get('/api/ipsum/', function(req, res) {
   if (settings.smash4.items === "true") {
     words = words.concat(smash4Dictionary.items);
   }
-  // if (settings.smash4.general === "true") {
-  //   words = words.concat(smash4Dictionary.general);
-  // }
+
+  // ultimate
+  if (settings.ultimate.characters === "true") {
+    words = words.concat(ultimateDictionary.characters);
+  }
+  if (settings.ultimate.stages === "true") {
+    words = words.concat(ultimateDictionary.stages);
+  }
+  if (settings.ultimate.items === "true") {
+    words = words.concat(ultimateDictionary.items);
+  }
 
   const latin = latinDictionary.slice(0, words.length / 2);
 
