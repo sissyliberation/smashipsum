@@ -25,7 +25,7 @@ class App extends React.Component {
       minSentences:   3,
       maxSentences:   7,
       numParagraphs:  4,
-      format:         'text',
+      format:         'plain',
       smash64:  {
         characters: true,
         stages:     true,
