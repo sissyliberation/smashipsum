@@ -16,17 +16,10 @@
   "author": "Disregarding Standards",
   "license": "MIT",
   "dependencies": {
-    "bulma": "^0.6.2",
     "concurrently": "^4.1.2",
     "express": "^4.16.2",
     "express-favicon": "^2.0.1",
     "favicon": "0.0.2",
-    "gulp-autoprefixer": "^4.1.0",
-    "gulp-clean-css": "^3.9.2",
-    "gulp-concat": "^2.6.1",
-    "gulp-rename": "^1.2.2",
-    "gulp-sass": "^3.1.0",
-    "gulp-uglify": "^3.0.0",
     "lorem-ipsum": "^1.0.3",
     "path": "^0.12.7",
     "react-ga": "^2.6.0"
