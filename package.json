@@ -20,7 +20,7 @@
     "express": "^4.16.2",
     "express-favicon": "^2.0.1",
     "favicon": "0.0.2",
-    "lorem-ipsum": "^1.0.3",
+    "lorem-ipsum": "^2.0.3",
     "path": "^0.12.7",
     "react-ga": "^2.6.0"
   }

@@ -1,97 +1,104 @@
 const express = require('express');
 const favicon = require('express-favicon');
 const path = require('path');
-const loremIpsum = require('lorem-ipsum');
+const loremIpsum = require("lorem-ipsum").loremIpsum;
 const chalk = require('chalk');
 const talk = chalk.hex("2AF5FF")
 
 const app = express();
 const port = process.env.PORT || 8080;
 
-const latinDictionary = require(__dirname+'/lib/latin/dictionary').words;
-const smash64Dictionary = require(__dirname+'/lib/smash64/dictionary');
-const meleeDictionary = require(__dirname+'/lib/melee/dictionary');
-const brawlDictionary = require(__dirname+'/lib/brawl/dictionary');
-const pmDictionary = require(__dirname+'/lib/pm/dictionary');
-const smash4Dictionary = require(__dirname+'/lib/smash4/dictionary');
-const ultimateDictionary = require(__dirname+'/lib/ultimate/dictionary');
+let latinDictionary = require(__dirname+'/lib/latin/dictionary').words;
+let smash64Dictionary = require(__dirname+'/lib/smash64/dictionary');
+let meleeDictionary = require(__dirname+'/lib/melee/dictionary');
+let brawlDictionary = require(__dirname+'/lib/brawl/dictionary');
+let pmDictionary = require(__dirname+'/lib/pm/dictionary');
+let smash4Dictionary = require(__dirname+'/lib/smash4/dictionary');
+let ultimateDictionary = require(__dirname+'/lib/ultimate/dictionary');
 
 app.use(express.static(__dirname));
 
 app.get('/api/ipsum/', (req, res) => {
   shuffle(latinDictionary);
-  let words = [];
+  var words = [];
   let settings = JSON.parse(JSON.stringify(req.query));
 
+  settings["smash64"] = JSON.parse(settings["smash64"]);
+  settings["brawl"] = JSON.parse(settings["brawl"]);
+  settings["melee"] = JSON.parse(settings["melee"]);
+  settings["pm"] = JSON.parse(settings["pm"]);
+  settings["smash4"] = JSON.parse(settings["smash4"]);
+  settings["ultimate"] = JSON.parse(settings["ultimate"]);
+
   // smash 64
-  if (settings.smash64.characters === "true") {
+  if (settings.smash64.characters === true) {
     words = words.concat(smash64Dictionary.characters);
   }
-  if (settings.smash64.stages === "true") {
+  if (settings.smash64.stages === true) {
     words = words.concat(smash64Dictionary.stages);
   }
-  if (settings.smash64.items === "true") {
+  if (settings.smash64.items === true) {
     words = words.concat(smash64Dictionary.items);
   }
 
   // melee
-  if (settings.melee.characters === "true") {
+  if (settings.melee.characters === true) {
     words = words.concat(meleeDictionary.characters);
   }
-  if (settings.melee.stages === "true") {
+  if (settings.melee.stages === true) {
     words = words.concat(meleeDictionary.stages);
   }
-  if (settings.melee.items === "true") {
+  if (settings.melee.items === true) {
     words = words.concat(meleeDictionary.items);
   }
 
   // brawl
-  if (settings.brawl.characters === "true") {
+  if (settings.brawl.characters === true) {
     words = words.concat(brawlDictionary.characters);
   }
-  if (settings.brawl.stages === "true") {
+  if (settings.brawl.stages === true) {
     words = words.concat(brawlDictionary.stages);
   }
-  if (settings.brawl.items === "true") {
+  if (settings.brawl.items === true) {
     words = words.concat(brawlDictionary.items);
   }
 
   // pm
-  if (settings.pm.characters === "true") {
+  if (settings.pm.characters === true) {
     words = words.concat(pmDictionary.characters);
   }
-  if (settings.pm.stages === "true") {
+  if (settings.pm.stages === true) {
     words = words.concat(pmDictionary.stages);
   }
   // pm items are exactly the same as brawl,
   // so it's just stored in brawl dictionary
-  if (settings.pm.items === "true") {
+  if (settings.pm.items === true) {
     words = words.concat(brawlDictionary.items);
   }
 
   // smash 4
-  if (settings.smash4.characters === "true") {
+  if (settings.smash4.characters === true) {
     words = words.concat(smash4Dictionary.characters);
   }
-  if (settings.smash4.stages === "true") {
+  if (settings.smash4.stages === true) {
     words = words.concat(smash4Dictionary.stages);
   }
-  if (settings.smash4.items === "true") {
+  if (settings.smash4.items === true) {
     words = words.concat(smash4Dictionary.items);
   }
 
   // ultimate
-  if (settings.ultimate.characters === "true") {
+  if (settings.ultimate.characters === true) {
     words = words.concat(ultimateDictionary.characters);
   }
-  if (settings.ultimate.stages === "true") {
+  if (settings.ultimate.stages === true) {
     words = words.concat(ultimateDictionary.stages);
   }
-  if (settings.ultimate.items === "true") {
+  if (settings.ultimate.items === true) {
     words = words.concat(ultimateDictionary.items);
   }
 
-  const latin = latinDictionary.slice(0, words.length / 2);
+  var latin = latinDictionary.slice(0, words.length / 2);
 
   words = words.concat(latin);
 
@@ -100,7 +107,7 @@ app.get('/api/ipsum/', (req, res) => {
   const maxWords      =  parseInt(settings.maxWords) || 15;
   const minSentences  =  parseInt(settings.minSentences) || 3;
   const maxSentences  =  parseInt(settings.maxSentences) || 7;
-  const format        =  settings.format || 'text'; 
+  const format        =  settings.format || 'plain';
 
   let output = loremIpsum({
     count:  numParagraphs,              // Number of words, sentences, or paragraphs to generate.
@@ -114,15 +121,12 @@ app.get('/api/ipsum/', (req, res) => {
     random: Math.random                 // A PRNG function. Uses Math.random by default
   });
 
-  if (format === 'html') {
-     output = output.replace(/(\n)+/g, '\n\n');
-  }
-
+  // add an extra new line for legibility
+  output = output.replace(/(\n)+/g, '\n\n');
+  
   let data = {
     ipsum: output
   }
-
-  console.log(talk.bold(data));
 
   res.send(data);
 });
