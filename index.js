@@ -16,15 +16,7 @@ const ultimateDictionary = require(__dirname+'/lib/ultimate/dictionary');
 
 app.use(express.static(__dirname));
 
-if (process.env.NODE_ENV === "production") {
-  const prodPath = '/client/build/';
-  app.use(favicon(__dirname + `${prodPath}/favicon.ico`));
 
-  app.use(express.static(path.join(__dirname, prodPath)));
-  app.get('/*', function (req, res) {
-    res.sendFile(path.join(__dirname, `${prodPath}index.html`));
-  });  
-}
 
 app.get('/api/ipsum/', function(req, res) {
   shuffle(latinDictionary);
@@ -132,6 +124,16 @@ app.get('/api/ipsum/', function(req, res) {
 
   res.send(data);
 });
+
+if (process.env.NODE_ENV === "production") {
+  const prodPath = '/client/build/';
+  app.use(favicon(__dirname + `${prodPath}/favicon.ico`));
+
+  app.use(express.static(path.join(__dirname, prodPath)));
+  app.get('/*', function (req, res) {
+    res.sendFile(path.join(__dirname, `${prodPath}index.html`));
+  });  
+}
 
 app.listen(port, () => console.log(`listening on port ${port}`));
 
