@@ -30,8 +30,6 @@ app.get('/api/ipsum/', function(req, res) {
   let words = [];
   let settings = JSON.parse(JSON.stringify(req.query));
 
-  console.log(settings);
-
   // smash 64
   if (settings.smash64.characters === "true") {
     words = words.concat(smash64Dictionary.characters);
@@ -102,48 +100,55 @@ app.get('/api/ipsum/', function(req, res) {
   //   words = words.concat(smash4Dictionary.general);
   // }
 
-  var latin = latinDictionary.slice(0, words.length / 2);
+  const latin = latinDictionary.slice(0, words.length / 2);
 
   words = words.concat(latin);
 
-  var numParagraphs =  parseInt(settings.numParagraphs) || 4;
-  var minWords      =   parseInt(settings.minWords) || 5;
-  var maxWords      =   parseInt(settings.maxWords) || 15;
-  var minSentences  =   parseInt(settings.minSentences) || 3;
-  var maxSentences  =   parseInt(settings.maxSentences) || 7;
+  const numParagraphs =  parseInt(settings.numParagraphs) || 4;
+  const minWords      =  parseInt(settings.minWords) || 5;
+  const maxWords      =  parseInt(settings.maxWords) || 15;
+  const minSentences  =  parseInt(settings.minSentences) || 3;
+  const maxSentences  =  parseInt(settings.maxSentences) || 7;
+  const format        =  settings.format || 'text'; 
 
-  var output = loremIpsum({
+  let output = loremIpsum({
     count:  numParagraphs,              // Number of words, sentences, or paragraphs to generate.
     units: 'paragraphs',                // Generate words, sentences, or paragraphs.
     sentenceLowerBound: minWords,       // Minimum words per sentence.
     sentenceUpperBound: maxWords,       // Maximum words per sentence.
     paragraphLowerBound: minSentences,  // Minimum sentences per paragraph.
     paragraphUpperBound: maxSentences,  // Maximum sentences per paragraph.
-    format: 'html',                     // Plain text or html
+    format: format,                     // Plain text or html
     words: words,                       // Custom word dictionary. Uses dictionary.words (in lib/dictionary.js) by default.
     random: Math.random                 // A PRNG function. Uses Math.random by default
   });
 
-  console.log(output);
+  if (format === 'html') {
+     output = output.replace(/(\n)+/g, '\n\n');
+  }
 
-  res.send(output);
+  let data = {
+    ipsum: output
+  }
+
+  res.send(data);
 });
 
 app.listen(port, () => console.log(`listening on port ${port}`));
 
 function shuffle(array) {
-  var counter = array.length;
+  let counter = array.length;
 
   // While there are elements in the array
   while (counter > 0) {
     // Pick a random index
-    var index = Math.floor(Math.random() * counter);
+    let index = Math.floor(Math.random() * counter);
 
     // Decrease counter by 1
     counter--;
 
     // And swap the last element with it
-    var temp = array[counter];
+    let temp = array[counter];
     array[counter] = array[index];
     array[index] = temp;
   }

@@ -11,6 +11,12 @@
     font-size: 1.1rem;
   }
 
+  pre {
+    font-family: $font-main;
+    overflow: hidden;
+    white-space: pre-wrap;
+  }
+
   &__cta {
     margin-top: 2em;
     text-align: center;

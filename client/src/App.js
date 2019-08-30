@@ -18,6 +18,7 @@ class App extends React.Component {
       minSentences:   3,
       maxSentences:   7,
       numParagraphs:  4,
+      format:         'text',
       smash64:  {
         characters: true,
         stages:     true,
@@ -52,15 +53,14 @@ class App extends React.Component {
   }
 
   getData = () => {
-    console.log('get data');
     if (this.state) {
-      console.log('-- make call');
       const settings = {
         numParagraphs:  this.state.numParagraphs,
         minWords:       this.state.minWords,
         maxWords:       this.state.maxWords,
         minSentences:   this.state.minSentences,
         maxSentences:   this.state.maxSentences,
+        format:         this.state.format,
         smash64: this.state.smash64,
         melee: this.state.melee,
         brawl: this.state.brawl,
@@ -68,14 +68,14 @@ class App extends React.Component {
         smash4: this.state.smash4
       };
 
-      console.log(settings);
-
       axios.get('/api/ipsum', {
         params: settings
       })
       .then(res => {
+        let { ipsum } = res.data;
+
         this.setState({
-          ipsum: res.data
+          ipsum: ipsum
         })
       })
       .catch(err => {
@@ -85,9 +85,7 @@ class App extends React.Component {
   }
 
   onCheckboxCheck = (e) => {
-    console.log(e.target);
     let { instance, name, checked } = e.target;
-    console.log(`checked = ${e.target.checked}`);
 
     this.setState({
       [instance]: {
@@ -97,9 +95,11 @@ class App extends React.Component {
     })
   }
 
-  // function onNumberChange(value) {
-  //   console.log('changed', value);
-  // }
+  onSelectChange = (name) => (value) => {
+    this.setState({
+      [name]: value
+    })
+  }
 
   onNumberChange = (name) => (value) => {
     this.setState({
@@ -119,7 +119,8 @@ class App extends React.Component {
         <Content>
           <Settings {...this.state}
             onCheckboxCheck={this.onCheckboxCheck}
-            onNumberChange={this.onNumberChange} />
+            onNumberChange={this.onNumberChange}
+            onSelectChange={this.onSelectChange} />
 
           <Ipsum ipsum={this.state.ipsum} getData={this.getData} />
         </Content>

@@ -73,10 +73,9 @@ export default function Settings(props) {
         </div>
         <div className="settings__instance">
           <div className="settings__instance__title">format</div>
-          <Select defaultValue="text">
+          <Select value={props.format} onChange={props.onSelectChange("format")}>
             <Option value="text">Plain Text</Option>
-            <Option value="div">divs</Option>
-            <Option value="paragraphs">paragraphs</Option>
+            <Option value="html">HTML</Option>
           </Select>
         </div>
       </div>

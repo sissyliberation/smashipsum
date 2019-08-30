@@ -8,7 +8,7 @@ export default function Ipsum(props) {
     <div className="ipsum">
       <h2>Smash Ipsum Generator</h2>
       <div className="ipsum__content">
-        { props.ipsum }
+        <pre>{ props.ipsum }</pre>
       </div>
 
       <div className="ipsum__cta">

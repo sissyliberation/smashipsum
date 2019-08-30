@@ -72,10 +72,20 @@
 
 // select
 .ant-select {
+  width: 100%;
   .ant-select-selection {
     background-color: $color-dark;
     border-color: $color-lite;
     color: $color-lite;
+
+    &:hover {
+      border-color: $color-main;
+    }
+
+    .ant-select-focused {
+      border-color: $color-main;
+      box-shadow: 0 0 0 2px rgba($color-main, 0.2)
+    }
   }
 
   .ant-select-arrow {
