@@ -28,6 +28,7 @@
     "gulp-sass": "^3.1.0",
     "gulp-uglify": "^3.0.0",
     "lorem-ipsum": "^1.0.3",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "react-ga": "^2.6.0"
   }
 }

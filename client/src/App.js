@@ -1,7 +1,8 @@
 import React from 'react';
-import './app.scss';
+import ReactGA from 'react-ga';
 import axios from 'axios';
 import { Layout } from 'antd';
+
 import Header from './components/header';
 import Hero from './components/hero';
 import Footer from './components/footer';
@@ -9,6 +10,7 @@ import Footer from './components/footer';
 import Settings from './components/settings';
 import Ipsum from './components/ipsum';
 
+import './app.scss';
 
 const { Content } = Layout;
 
@@ -58,6 +60,7 @@ class App extends React.Component {
   }
 
   getData = () => {
+
     if (this.state) {
       const settings = {
         numParagraphs:  this.state.numParagraphs,
@@ -82,6 +85,11 @@ class App extends React.Component {
 
         this.setState({
           ipsum: ipsum
+        }, () => {
+          ReactGA.event({
+            category: 'Ipsum',
+            action: 'Generate Text'
+          });
         })
       })
       .catch(err => {
@@ -114,8 +122,9 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    console.log('mount');
     this.getData();
+    ReactGA.initialize('UA-113771362-1');
+    ReactGA.pageview('/');
   }
 
   render() {
