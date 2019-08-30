@@ -11,11 +11,37 @@ body {
 }
 
 * {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
 h1, h2, h3, h4, h5, h6 {
-	font: $font-main;
-	color: $color-lite;
-	font-weight: 900;
+  font: $font-main;
+  color: $color-lite;
+  font-weight: 900;
+}
+
+a {
+  position: relative;
+  display: inline-block;
+  color: $color-main;
+
+  &:after {
+    content:'';
+    display: block;
+    width: 0;
+    height: 2px;
+    margin-top: 3px;
+    background-color: transparent;
+    transition: ease-in-out background-color, width .3s;
+  }
+
+  &:hover,
+  &:focus {
+    color: $color-main;
+
+    &:after {
+      background-color: $color-main;
+      width: 100%;
+    }
+  }
 }

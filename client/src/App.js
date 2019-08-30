@@ -124,7 +124,11 @@ class App extends React.Component {
 
           <Ipsum ipsum={this.state.ipsum} getData={this.getData} />
         </Content>
-        <Footer>footer</Footer>
+        <Footer>
+          <div className="container">
+            // Created in ATX by <a href="https://novacourtois.github.io" target="_blank" rel="noopener noreferrer">Nova Skye</a>
+          </div>
+        </Footer>
       </Layout>
     );
   }

@@ -111,3 +111,16 @@
     width: auto;
   }
 }
+
+// footer
+.ant-layout-footer {
+  .container {
+    @include container;
+  }
+  
+  @include label;
+  text-align: right;
+  background-color: $color-dark;
+  color: $color-lite;
+  border-top: 2px solid $color-main;
+}

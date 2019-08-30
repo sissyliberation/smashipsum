@@ -7,7 +7,7 @@ $screen-tablet: 900px;
 $screen-desktop: 1150px;
 
 $font-main: 'Merriweather', serif;
-$font-secondary: 'IBM Plex Mono', monospace;
+$font-alt: 'IBM Plex Mono', monospace;
 
 @mixin tablet {
   @media (min-width: $screen-tablet) {
@@ -22,6 +22,7 @@ $font-secondary: 'IBM Plex Mono', monospace;
 }
 
 @mixin container {
+  width: 100%;
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
@@ -31,7 +32,7 @@ $font-secondary: 'IBM Plex Mono', monospace;
   letter-spacing: .1em;
   text-transform: uppercase;
   margin-bottom: .5em;
-  font-family: $font-secondary;
+  font-family: $font-alt;
   font-weight: 700;
   color: $color-main;
 }
