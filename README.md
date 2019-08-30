@@ -4,15 +4,14 @@ link: [http:/smashipsum.herokuapp.com/](http://smashipsum.herokuapp.com/)
 
 ## Built With
 
-* jQuery
-* Bulma
+* React
+* Ant Design
 * Node.js
 * Heroku
-* Gulp
 
 ### Features
 
-* Including Smash 64, Melee, Brawl, Project M, Smash 4
+* Including Smash 64, Melee, Brawl, Project M, Smash 4, Ultimate
 * Characters, stages, and items from each game included
 * Various filter settings
 
