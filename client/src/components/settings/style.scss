@@ -4,6 +4,7 @@
   $e : &;
 
   @include container;
+  @include base;
 
   &__content {
     @include tablet {

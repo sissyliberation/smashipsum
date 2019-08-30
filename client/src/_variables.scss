@@ -7,6 +7,7 @@ $screen-tablet: 900px;
 $screen-desktop: 1150px;
 
 $font-secondary: 'IBM Plex Mono', monospace;
+$font-main: 'Merriweather', serif;
 
 @mixin tablet {
   @media (min-width: $screen-tablet) {
@@ -34,4 +35,8 @@ $font-secondary: 'IBM Plex Mono', monospace;
   font-family: $font-secondary;
   font-weight: 700;
   color: $color-main;
+}
+
+@mixin base {
+  padding: 2.5em 0;
 }

@@ -3,14 +3,19 @@
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
+  font-family: $font-main;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
+  color: $color-lite;
 }
 
 * {
 	box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+	font: $font-main;
+	color: $color-lite;
+	font-weight: 900;
 }
