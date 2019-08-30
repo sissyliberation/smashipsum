@@ -1,14 +1,13 @@
 @import '../../variables';
 
 .ipsum {
-  $e : &;
-
   @include container;
   @include base;
 
   &__content {
     margin-top: 2em;
-    font-size: 1.1rem;
+    font-style: italic;
+    font-size: 1.1em;
   }
 
   pre {

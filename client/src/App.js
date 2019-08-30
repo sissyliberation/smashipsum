@@ -2,10 +2,13 @@ import React from 'react';
 import './app.scss';
 import axios from 'axios';
 import { Layout } from 'antd';
+import Header from './components/header';
+import Hero from './components/hero';
+import Footer from './components/footer';
+
 import Settings from './components/settings';
 import Ipsum from './components/ipsum';
-import Header from './components/header';
-import Footer from './components/footer';
+
 
 const { Content } = Layout;
 
@@ -119,6 +122,8 @@ class App extends React.Component {
       <Layout>
         <Header />
         <Content>
+          <Hero />
+          
           <Settings {...this.state}
             onCheckboxCheck={this.onCheckboxCheck}
             onNumberChange={this.onNumberChange}
