@@ -2,6 +2,8 @@ const express = require('express');
 const favicon = require('express-favicon');
 const path = require('path');
 const loremIpsum = require('lorem-ipsum');
+const chalk = require('chalk');
+const talk = chalk.hex("2AF5FF")
 
 const app = express();
 const port = process.env.PORT || 8080;
@@ -16,9 +18,7 @@ const ultimateDictionary = require(__dirname+'/lib/ultimate/dictionary');
 
 app.use(express.static(__dirname));
 
-
-
-app.get('/api/ipsum/', function(req, res) {
+app.get('/api/ipsum/', (req, res) => {
   shuffle(latinDictionary);
   let words = [];
   let settings = JSON.parse(JSON.stringify(req.query));
@@ -122,6 +122,8 @@ app.get('/api/ipsum/', function(req, res) {
     ipsum: output
   }
 
+  console.log(talk.bold(data));
+
   res.send(data);
 });
 
@@ -130,12 +132,12 @@ if (process.env.NODE_ENV === "production") {
   app.use(favicon(__dirname + `${prodPath}/favicon.ico`));
 
   app.use(express.static(path.join(__dirname, prodPath)));
-  app.get('/*', function (req, res) {
+  app.get('/', (req, res) => {
     res.sendFile(path.join(__dirname, `${prodPath}index.html`));
   });  
 }
 
-app.listen(port, () => console.log(`listening on port ${port}`));
+app.listen(port, () => console.log(talk.bold(`listening on port ${port}`)));
 
 function shuffle(array) {
   let counter = array.length;
