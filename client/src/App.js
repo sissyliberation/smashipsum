@@ -2,10 +2,11 @@ import React from 'react';
 import './app.scss';
 import axios from 'axios';
 import { Layout } from 'antd';
-import Settings  from './components/settings';
-import Ipsum  from './components/ipsum';
+import Settings from './components/settings';
+import Ipsum from './components/ipsum';
+import Footer from './components/footer';
 
-const { Header, Footer, Content } = Layout;
+const { Header, Content } = Layout;
 
 class App extends React.Component {
   constructor(props) {
@@ -124,11 +125,8 @@ class App extends React.Component {
 
           <Ipsum ipsum={this.state.ipsum} getData={this.getData} />
         </Content>
-        <Footer>
-          <div className="container">
-            // Created in ATX by <a href="https://novacourtois.github.io" target="_blank" rel="noopener noreferrer">Nova Skye</a>
-          </div>
-        </Footer>
+        <Footer />
+        
       </Layout>
     );
   }
