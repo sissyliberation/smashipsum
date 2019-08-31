@@ -75,18 +75,18 @@ class App extends React.Component {
 
     if (this.state) {
       const settings = {
-        numParagraphs:  this.state.numParagraphs,
-        minWords:       this.state.minWords,
-        maxWords:       this.state.maxWords,
-        minSentences:   this.state.minSentences,
-        maxSentences:   this.state.maxSentences,
-        format:         this.state.format,
-        smash64:        this.state.smash64,
-        melee:          this.state.melee,
-        brawl:          this.state.brawl,
-        pm:             this.state.pm,
-        smash4:         this.state.smash4,
-        ultimate:       this.state.ultimate
+        numParagraphs:  this.state.settings.numParagraphs,
+        minWords:       this.state.settings.minWords,
+        maxWords:       this.state.settings.maxWords,
+        minSentences:   this.state.settings.minSentences,
+        maxSentences:   this.state.settings.maxSentences,
+        format:         this.state.settings.format,
+        smash64:        this.state.settings.smash64,
+        melee:          this.state.settings.melee,
+        brawl:          this.state.settings.brawl,
+        pm:             this.state.settings.pm,
+        smash4:         this.state.settings.smash4,
+        ultimate:       this.state.settings.ultimate
       };
 
       axios.get('/api/ipsum', {
