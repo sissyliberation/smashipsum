@@ -10,6 +10,7 @@ import Footer from './components/footer';
 import Settings from './components/settings';
 import Ipsum from './components/ipsum';
 
+import CookieBanner from './components/cookie-banner';
 import './app.scss';
 
 const { Content } = Layout;
@@ -130,6 +131,7 @@ class App extends React.Component {
   render() {
     return (
       <Layout>
+        <CookieBanner />
         <Header />
         <Content>
           <Hero />

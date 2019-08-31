@@ -1,0 +1,35 @@
+@import '../../variables';
+
+.cookie-banner {
+  @include layout-base;
+  @include label;
+  margin-bottom: 0;
+  width: 100%;
+  color: $color-dark;
+  background-color: $color-main;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+
+  &__ctas {
+    margin-left: 1em;
+    display: flex;
+  }
+
+  &__cta {
+    @include label;
+    color: $color-dark;
+    border: 0;
+    background: transparent;
+    margin-left: 1em;
+    padding: .25em .5em;
+    cursor: pointer;
+  }
+
+  ~ .footer {
+    margin-bottom: 6em;
+  }
+}
