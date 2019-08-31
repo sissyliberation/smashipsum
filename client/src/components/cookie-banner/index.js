@@ -8,8 +8,8 @@ export default function CookieBanner(props) {
       Can we use cookies?
 
       <div className="cookie-banner__ctas">
-        <button className="cookie-banner__cta">Yes</button>
-        <button className="cookie-banner__cta">No</button>
+        <button className="cookie-banner__cta" value={true} onClick={props.onCookieBannerSelection}>Yes</button>
+        <button className="cookie-banner__cta" value={false} onClick={props.onCookieBannerSelection}>No</button>
       </div>
     </div>
    );
