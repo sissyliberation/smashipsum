@@ -88,8 +88,10 @@
       margin: 0;
       flex: 1;
 
-      + .ant-checkbox-wrapper {
-        margin-top: .5em;
+      @include tablet {
+        + .ant-checkbox-wrapper {
+          margin-top: .5em;
+        }
       }
     }
 
