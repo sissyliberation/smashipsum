@@ -159,7 +159,11 @@ class App extends React.Component {
       displayCookieBanner: false,
       useCookies: value
     }, () => {
-      cookie.save('smashipsum__cookie-consent', value, { path: '/' })
+      cookie.save('smashipsum__cookie-consent', value, { path: '/' });
+      ReactGA.event({
+        category: 'Cookie Consent',
+        action: value
+      });
     })
   }
 
