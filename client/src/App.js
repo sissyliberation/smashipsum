@@ -127,8 +127,6 @@ class App extends React.Component {
   }
 
   onSelectChange = (name) => (value) => {
-    console.log(this.state);
-    console.log(name, value);
     this.setState({
       settings: {
         ...this.state.settings,
