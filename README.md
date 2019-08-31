@@ -14,13 +14,18 @@ link: [http:/smashipsum.herokuapp.com/](http://smashipsum.herokuapp.com/)
 * Including Smash 64, Melee, Brawl, Project M, Smash 4, Ultimate
 * Characters, stages, and items from each game included
 * Various filter settings
-
+ 
 ### Installing
+* clone the repo
+* run `npm install`
+* checkout ./package.json for available scripts
+
+### Usage
 
 This can be used to make any sort of Lorem Ipsum Genarator.
 Just change the dictionaries in /lib/ with whatever suits your category.
 
-You can see how it works on ./server.js
+You can see how it works on ./index.js
 
 
 ## Contributing

@@ -22,6 +22,7 @@
     "favicon": "0.0.2",
     "lorem-ipsum": "^2.0.3",
     "path": "^0.12.7",
+    "react-cookies": "^0.1.1",
     "react-ga": "^2.6.0"
   }
 }
