@@ -61,16 +61,15 @@ class App extends React.Component {
         }
       },
       displayCookieBanner: true,
-      useCookies: false
+      displayCookieExplanation: false
     };
   }
 
-  setCookiesIfAllowed = () => {
-    if (this.state.useCookies) {
-      const settings = JSON.stringify(this.state.settings);
-      cookie.save('smashipsum__settings', settings, { path: '/' })
-    }
+  setCookies = () => {
+    const settings = JSON.stringify(this.state.settings);
+    cookie.save('smashipsum__settings', settings, { path: '/' })
   }
+
   getData = () => {
 
     if (this.state) {
@@ -122,7 +121,7 @@ class App extends React.Component {
         }
       }
     }, () => {
-      this.setCookiesIfAllowed();
+      this.setCookies();
     })
   }
 
@@ -133,7 +132,7 @@ class App extends React.Component {
         [name]: value
       }
     }, () => {
-      this.setCookiesIfAllowed();
+      this.setCookies();
     })
   }
 
@@ -144,23 +143,33 @@ class App extends React.Component {
         [name]: value
       }
     }, () => {
-      this.setCookiesIfAllowed();
+      this.setCookies();
     })
   }
 
   onCookieBannerSelection = (event) => {
     event.preventDefault();
 
-    let { value } = event.target;
-
     this.setState({
-      displayCookieBanner: false,
-      useCookies: value
+      displayCookieBanner: false
     }, () => {
-      cookie.save('smashipsum__cookie-consent', value, { path: '/' });
+      cookie.save('smashipsum__cookie-consent', true, { path: '/' });
       ReactGA.event({
         category: 'Cookie Consent',
-        action: value
+        action: 'Click Okay'
+      });
+    })
+  }
+
+  onCookieExplanation = (event) => {
+    event.preventDefault();
+
+    this.setState({
+      displayCookieExplanation: true
+    }, () => {
+      ReactGA.event({
+        category: 'Cookie Explanation',
+        action: 'View Explanation'
       });
     })
   }
@@ -181,8 +190,7 @@ class App extends React.Component {
     }
 
     this.setState({
-      displayCookieBanner: cookieConsent === undefined,
-      useCookies: cookieConsent === "true"
+      displayCookieBanner: cookieConsent === undefined
     })
 
     ReactGA.initialize('UA-113771362-1');
@@ -193,7 +201,10 @@ class App extends React.Component {
     return (
       <Layout>
         { this.state.displayCookieBanner && (
-          <CookieBanner onCookieBannerSelection={this.onCookieBannerSelection} />
+          <CookieBanner
+            displayCookieExplanation={this.state.displayCookieExplanation}
+            onCookieBannerSelection={this.onCookieBannerSelection}
+            onCookieExplanation={this.onCookieExplanation} />
         )}
 
         <Header />

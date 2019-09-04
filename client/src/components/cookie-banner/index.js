@@ -4,13 +4,24 @@ import './style.scss';
 
 export default function CookieBanner(props) {
   return (
-    <div className="cookie-banner">
-      Can we use cookies?
-
-      <div className="cookie-banner__ctas">
-        <button className="cookie-banner__cta" value={true} onClick={props.onCookieBannerSelection}>Yes</button>
-        <button className="cookie-banner__cta" value={false} onClick={props.onCookieBannerSelection}>No</button>
+    <>
+      {
+        props.displayCookieExplanation &&
+        <div className="cookie-explanation">
+          We use cookies to save your settings, for basic Google Analytics, and for no other reason.
+        </div>
+      }
+      
+      <div className="cookie-banner">
+        We use cookies.
+        <div className="cookie-banner__ctas">
+          <button className="cookie-banner__cta" onClick={props.onCookieBannerSelection}>Ok</button>
+          {
+            !props.displayCookieExplanation &&
+            <button className="cookie-banner__cta" onClick={props.onCookieExplanation}>Why?</button>
+          }
+        </div>
       </div>
-    </div>
+    </>
    );
 };
