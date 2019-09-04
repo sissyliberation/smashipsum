@@ -33,3 +33,40 @@
     margin-bottom: 6em;
   }
 }
+
+.cookie-explanation {
+  @include layout-base;
+  @include label;
+  font-size: .8em;
+  margin-bottom: 0;
+  width: 100%;
+  position: fixed;
+  bottom: 0;
+  z-index: 1;
+  background-color: $color-dark;
+  color: $color-lite;
+  padding: .5rem 1.5rem;
+  height: 48px;
+  display: flex;
+  align-items: center;
+
+  ~ .footer {
+    margin-bottom: calc(6em + 48px);
+  }
+
+  ~ .cookie-banner {
+    bottom: 48px;
+  }
+
+  @include tablet {
+    height: 32px;
+
+    ~ .footer {
+      margin-bottom: calc(6em + 32px);
+    }
+
+    ~ .cookie-banner {
+      bottom: 32px;
+    }
+  }
+}
