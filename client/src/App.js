@@ -174,6 +174,12 @@ class App extends React.Component {
     })
   }
 
+  onAnchorScroll = field => (event) => {
+    event.preventDefault();
+    
+    document.getElementById(field).scrollIntoView({behavior:"smooth", block: "start"});
+  }
+
   componentDidMount() {
     const cookieConsent = cookie.load('smashipsum__cookie-consent');
     const cookieValue = cookie.load('smashipsum__settings');
@@ -207,7 +213,7 @@ class App extends React.Component {
             onCookieExplanation={this.onCookieExplanation} />
         )}
 
-        <Header />
+        <Header onAnchorScroll={this.onAnchorScroll} />
         <Content>
           <Hero />
           
