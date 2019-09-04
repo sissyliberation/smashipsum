@@ -15,8 +15,8 @@ export default function HeaderContent(props) {
       		</a>
       	</div>
       	<div className="header__right">
-      		<a className="header__link" href="#settings">Settings</a>
-      		<a className="header__link" href="#generator">Generator</a>
+      		<a className="header__link" onClick={props.onAnchorScroll('settings')} href="#settings">Settings</a>
+      		<a className="header__link" onClick={props.onAnchorScroll('generator')} href="#generator">Generator</a>
       	</div>
       </div>
     </Header>
