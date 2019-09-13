@@ -7,6 +7,7 @@ link: [http:/smashipsum.herokuapp.com/](http://smashipsum.herokuapp.com/)
 * React
 * Ant Design
 * Node.js
+* Mongo
 * Heroku
 
 ### Features
@@ -23,7 +24,7 @@ link: [http:/smashipsum.herokuapp.com/](http://smashipsum.herokuapp.com/)
 ### Usage
 
 This can be used to make any sort of Lorem Ipsum Genarator.
-Just change the dictionaries in /lib/ with whatever suits your category.
+Just hook it up to whatever dataset you want.
 
 You can see how it works on ./index.js
 
