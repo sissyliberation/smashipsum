@@ -23,7 +23,7 @@
     "express-favicon": "^2.0.1",
     "favicon": "0.0.2",
     "lorem-ipsum": "^2.0.3",
-    "mongoose": "^5.7.0",
+    "mongoose": "^5.7.5",
     "path": "^0.12.7",
     "react-cookies": "^0.1.1",
     "react-ga": "^2.6.0"
