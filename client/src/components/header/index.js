@@ -17,6 +17,7 @@ export default function HeaderContent(props) {
       	<div className="header__right">
       		<a className="header__link" onClick={props.onAnchorScroll('settings')} href="#settings">Settings</a>
       		<a className="header__link" onClick={props.onAnchorScroll('generator')} href="#generator">Generator</a>
+          <button className="header__link" onClick={props.toggleDarkMode} aria-label="toggle lite / dark mode">Mode</button>
       	</div>
       </div>
     </Header>

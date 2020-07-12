@@ -61,7 +61,8 @@ class App extends React.Component {
         }
       },
       displayCookieBanner: true,
-      displayCookieExplanation: false
+      displayCookieExplanation: false,
+      darkMode: true,
     };
   }
 
@@ -71,7 +72,6 @@ class App extends React.Component {
   }
 
   getData = () => {
-
     if (this.state) {
       const settings = {
         numParagraphs:  this.state.settings.numParagraphs,
@@ -176,8 +176,14 @@ class App extends React.Component {
 
   onAnchorScroll = field => (event) => {
     event.preventDefault();
-    
+
     document.getElementById(field).scrollIntoView({behavior:"smooth", block: "start"});
+  }
+
+  toggleDarkMode = () => {
+    this.setState({
+      darkMode: !this.state.darkMode
+    })
   }
 
   componentDidMount() {
@@ -213,10 +219,10 @@ class App extends React.Component {
             onCookieExplanation={this.onCookieExplanation} />
         )}
 
-        <Header onAnchorScroll={this.onAnchorScroll} />
+        <Header onAnchorScroll={this.onAnchorScroll} toggleDarkMode={this.toggleDarkMode}/>
         <Content>
           <Hero />
-          
+
           <Settings settings={this.state.settings}
             onCheckboxCheck={this.onCheckboxCheck}
             onNumberChange={this.onNumberChange}
@@ -225,7 +231,7 @@ class App extends React.Component {
           <Ipsum ipsum={this.state.ipsum} getData={this.getData} />
         </Content>
         <Footer />
-        
+
       </Layout>
     );
   }

@@ -1,0 +1,27 @@
+@mixin link-style {
+  position: relative;
+  display: inline-block;
+  color: $color-main;
+  line-height: 1.3;
+  text-transform: uppercase;
+
+  &:after {
+    content:'';
+    display: block;
+    width: 0;
+    height: 2px;
+    margin-top: 3px;
+    background-color: transparent;
+    transition: ease-in-out background-color, width .3s;
+  }
+
+  &:hover,
+  &:focus {
+    color: $color-main;
+
+    &:after {
+      background-color: $color-main;
+      width: 100%;
+    }
+  }
+}
