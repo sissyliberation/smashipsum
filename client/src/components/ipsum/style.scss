@@ -16,8 +16,30 @@
     white-space: pre-wrap;
   }
 
-  &__cta {
+  &__cta-container {
     margin-top: 2em;
     text-align: center;
+    position: relative;
+  }
+
+  &__cta {
+    margin-bottom: 0;
+
+    &:not(:first-child) {
+      margin-top: 1em;
+
+      @include tablet {
+        margin-top: 0;
+        margin-left: auto;
+      }
+    }
+
+    &--copy {
+      @include tablet {
+        position: absolute;
+        top: 0;
+        right: 0;
+      }
+    }
   }
 }
