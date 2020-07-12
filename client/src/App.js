@@ -63,6 +63,7 @@ class App extends React.Component {
       displayCookieBanner: true,
       displayCookieExplanation: false,
       darkMode: true,
+      ipsumCopied: false,
     };
   }
 
@@ -95,7 +96,8 @@ class App extends React.Component {
         let { ipsum } = res.data;
 
         this.setState({
-          ipsum: ipsum
+          ipsum: ipsum,
+          ipsumCopied: false,
         }, () => {
           ReactGA.event({
             category: 'Ipsum',
@@ -188,6 +190,16 @@ class App extends React.Component {
     })
   }
 
+  copyData = (e) => {
+    e.preventDefault();
+
+    navigator.clipboard.writeText(this.state.ipsum);
+
+    this.setState({
+      ipsumCopied: true,
+    })
+  };
+
   componentDidMount() {
     const cookieConsent = cookie.load('smashipsum__cookie-consent');
     const settingsCookieValue = cookie.load('smashipsum__settings');
@@ -232,7 +244,10 @@ class App extends React.Component {
             onNumberChange={this.onNumberChange}
             onSelectChange={this.onSelectChange}/>
 
-          <Ipsum ipsum={this.state.ipsum} getData={this.getData} />
+          <Ipsum ipsum={this.state.ipsum}
+            getData={this.getData}
+            copyData={this.copyData}
+            ipsumCopied={this.state.ipsumCopied}/>
         </Content>
         <Footer />
 
