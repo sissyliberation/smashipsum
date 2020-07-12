@@ -211,7 +211,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <Layout>
+      <Layout className={this.state.darkMode ? '' : 'lite-mode'}>
         { this.state.displayCookieBanner && (
           <CookieBanner
             displayCookieExplanation={this.state.displayCookieExplanation}
@@ -219,7 +219,7 @@ class App extends React.Component {
             onCookieExplanation={this.onCookieExplanation} />
         )}
 
-        <Header onAnchorScroll={this.onAnchorScroll} toggleDarkMode={this.toggleDarkMode}/>
+        <Header onAnchorScroll={this.onAnchorScroll} toggleDarkMode={this.toggleDarkMode} darkMode={this.state.darkMode} />
         <Content>
           <Hero />
 
