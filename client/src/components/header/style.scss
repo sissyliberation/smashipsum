@@ -43,4 +43,13 @@
       display: none;
     }
   }
+
+  .lite-mode & {
+    background-color: $color-lite;
+    color: $color-dark;
+
+    &__home-link {
+      color: $color-dark;
+    }
+  }
 }
