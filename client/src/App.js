@@ -61,7 +61,8 @@ class App extends React.Component {
         }
       },
       displayCookieBanner: true,
-      displayCookieExplanation: false
+      displayCookieExplanation: false,
+      darkMode: true,
     };
   }
 
@@ -71,7 +72,6 @@ class App extends React.Component {
   }
 
   getData = () => {
-
     if (this.state) {
       const settings = {
         numParagraphs:  this.state.settings.numParagraphs,
@@ -176,17 +176,27 @@ class App extends React.Component {
 
   onAnchorScroll = field => (event) => {
     event.preventDefault();
-    
+
     document.getElementById(field).scrollIntoView({behavior:"smooth", block: "start"});
+  }
+
+  toggleDarkMode = () => {
+    this.setState({
+      darkMode: !this.state.darkMode
+    }, () => {
+      cookie.save('smashipsum__darkmode', this.state.darkMode, { path: '/' });
+    })
   }
 
   componentDidMount() {
     const cookieConsent = cookie.load('smashipsum__cookie-consent');
-    const cookieValue = cookie.load('smashipsum__settings');
+    const settingsCookieValue = cookie.load('smashipsum__settings');
+    const darkModeCookieValue = cookie.load('smashipsum__darkmode');
 
-    if (cookieConsent === "true" && cookieValue) {
+    if (cookieConsent === 'true' && (settingsCookieValue || darkModeCookieValue)) {
       this.setState({
-        settings: cookieValue
+        settings: settingsCookieValue,
+        darkMode: darkModeCookieValue === 'true',
       },() => {
         this.getData();
       })
@@ -205,7 +215,7 @@ class App extends React.Component {
 
   render() {
     return (
-      <Layout>
+      <Layout className={this.state.darkMode ? '' : 'lite-mode'}>
         { this.state.displayCookieBanner && (
           <CookieBanner
             displayCookieExplanation={this.state.displayCookieExplanation}
@@ -213,10 +223,10 @@ class App extends React.Component {
             onCookieExplanation={this.onCookieExplanation} />
         )}
 
-        <Header onAnchorScroll={this.onAnchorScroll} />
+        <Header onAnchorScroll={this.onAnchorScroll} toggleDarkMode={this.toggleDarkMode} darkMode={this.state.darkMode} />
         <Content>
           <Hero />
-          
+
           <Settings settings={this.state.settings}
             onCheckboxCheck={this.onCheckboxCheck}
             onNumberChange={this.onNumberChange}
@@ -225,7 +235,7 @@ class App extends React.Component {
           <Ipsum ipsum={this.state.ipsum} getData={this.getData} />
         </Content>
         <Footer />
-        
+
       </Layout>
     );
   }

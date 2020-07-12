@@ -1,4 +1,5 @@
 @import '../../variables';
+@import '../../mixins';
 
 .header {
   @include layout-base;
@@ -16,6 +17,9 @@
   }
 
   &__link {
+    @include link-style;
+    border: none;
+    background-color: transparent;
     margin-left: 2em;
 
     &:first-child {
@@ -37,6 +41,15 @@
 
     &:after {
       display: none;
+    }
+  }
+
+  .lite-mode & {
+    background-color: $color-lite;
+    color: $color-dark;
+
+    &__home-link {
+      color: $color-dark;
     }
   }
 }
