@@ -3,6 +3,10 @@
 // layout
 .ant-layout {
   background-color: $color-dark;
+
+  &.lite-mode {
+    background-color: $color-lite;
+  }
 }
 
 // checkbox
