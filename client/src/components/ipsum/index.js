@@ -11,8 +11,10 @@ export default function Ipsum(props) {
         <pre>{ props.ipsum }</pre>
       </div>
 
-      <div className="ipsum__cta">
-        <Button onClick={props.getData}>Let's Go</Button>
+      <div className="ipsum__cta-container">
+        <Button className="ipsum__cta" onClick={props.getData}>Let's Go</Button>
+
+        <Button className="ipsum__cta ipsum__cta--copy" onClick={props.copyData}>Copy</Button>
       </div>
     </div>
    );
