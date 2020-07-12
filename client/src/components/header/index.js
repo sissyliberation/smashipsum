@@ -10,7 +10,7 @@ export default function HeaderContent(props) {
     <Header className="header">
       <div className="header__container">
       	<div className="header__left">
-      		<a className="header__home-link" href="#">
+      		<a className="header__home-link">
       			Smash<span>Ipsum</span>
       		</a>
       	</div>

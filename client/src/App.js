@@ -183,16 +183,20 @@ class App extends React.Component {
   toggleDarkMode = () => {
     this.setState({
       darkMode: !this.state.darkMode
+    }, () => {
+      cookie.save('smashipsum__darkmode', this.state.darkMode, { path: '/' });
     })
   }
 
   componentDidMount() {
     const cookieConsent = cookie.load('smashipsum__cookie-consent');
-    const cookieValue = cookie.load('smashipsum__settings');
+    const settingsCookieValue = cookie.load('smashipsum__settings');
+    const darkModeCookieValue = cookie.load('smashipsum__darkmode');
 
-    if (cookieConsent === "true" && cookieValue) {
+    if (cookieConsent === 'true' && (settingsCookieValue || darkModeCookieValue)) {
       this.setState({
-        settings: cookieValue
+        settings: settingsCookieValue,
+        darkMode: darkModeCookieValue === 'true',
       },() => {
         this.getData();
       })
