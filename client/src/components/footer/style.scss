@@ -8,8 +8,13 @@
   background-color: $color-dark;
   color: $color-lite;
   border-top: 2px solid $color-main;
-  
+
   &__container {
     @include container;
+  }
+
+  .lite-mode & {
+    background-color: $color-lite;
+    color: $color-dark;
   }
 }

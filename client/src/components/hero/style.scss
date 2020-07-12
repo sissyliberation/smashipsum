@@ -3,6 +3,7 @@
 .hero {
   @include container;
   @include base;
+  color: $color-lite;
 
   padding-top: 3.5em;
   padding-bottom: 3.5em;
@@ -56,5 +57,9 @@
     display: block;
     max-width: 100%;
     margin: 0 auto;
+  }
+
+  .lite-mode & {
+    color: $color-dark;
   }
 }
