@@ -26,7 +26,7 @@
           &:nth-child(n+4) {
             margin-top: 2em;
           }
-        } 
+        }
       }
 
       @include desktop {
@@ -36,24 +36,24 @@
           &:nth-child(n+4) {
             margin-top: 0;
           }
-        } 
+        }
       }
     }
 
     &--general {
       @include tablet {
-      
+
         #{$e}__instance {
           width: calc((100% - 20px) / 2);
 
           &:nth-child(n+3) {
             margin-top: 2em;
           }
-        } 
+        }
       }
 
       @include desktop {
-      
+
         #{$e}__instance {
           width: calc((100% - 40px) / 3);
 
@@ -64,7 +64,7 @@
           &:nth-child(n+4) {
             margin-top: 2em;
           }
-        } 
+        }
       }
     }
   }
@@ -96,7 +96,7 @@
     }
 
     @include tablet {
-      
+
       flex-direction: column;
       flex-wrap: nowrap;
 
