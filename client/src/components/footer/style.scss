@@ -8,6 +8,7 @@
   background-color: $color-dark;
   color: $color-lite;
   border-top: 2px solid $color-main;
+  margin-top: 2.5rem;
 
   &__container {
     @include container;
