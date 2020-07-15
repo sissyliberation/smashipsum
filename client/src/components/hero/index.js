@@ -45,7 +45,7 @@ export default function Hero(props) {
           </div>
 
           <div className="hero__image">
-            <img className="hero__img" src={logoUltimate} alt="Smash Ultimate logo" />
+            <img className="hero__img hero__img--inverse" src={logoUltimate} alt="Smash Ultimate logo" />
           </div>
         </div>
       </div>
