@@ -1,11 +1,13 @@
 import React from 'react';
+import { useTheme } from '../../ThemeContext';
 import { Button } from 'antd';
 
 import './style.scss';
 
 export default function Ipsum(props) {
+  const { themeClass } = useTheme();
   return (
-    <div className="ipsum" id="generator">
+    <div className={`ipsum ${themeClass}`} id="generator">
       <h2>Smash Ipsum Generator</h2>
       <div className="ipsum__content">
         <pre>{ props.ipsum }</pre>

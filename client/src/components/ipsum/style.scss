@@ -1,6 +1,7 @@
 @import '../../variables';
 
 .ipsum {
+  $base : &;
   @include container;
   @include base;
 
@@ -43,7 +44,8 @@
     }
   }
 
-  .lite-mode & {
+  &.lite-mode {
     color: $color-dark;
+    background-color: $color-lite;
   }
 }

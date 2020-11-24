@@ -1,5 +1,5 @@
 import React from 'react';
-import {useTheme, useThemeUpdate} from '../../ThemeContext';
+import { useTheme } from '../../ThemeContext';
 
 import logo64 from '../../img/n64.png';
 import logoMelee from '../../img/melee.png';
