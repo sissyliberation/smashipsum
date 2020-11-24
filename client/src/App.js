@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext, useState} from 'react';
 import ReactGA from 'react-ga';
 import axios from 'axios';
 import cookie from 'react-cookies'
@@ -11,67 +11,27 @@ import Settings from './components/settings';
 import Ipsum from './components/ipsum';
 import CookieBanner from './components/cookie-banner';
 import { ThemeProvider } from './ThemeContext';
+import { CookieProvider } from './CookieContext';
 import './app.scss';
+
+import {initialSettings} from './data';
 
 const { Content } = Layout;
 
-class App extends React.Component {
-  constructor(props) {
-    super(props);
+export default function App(props) {
+  const [settings, setSettings] = useState(initialSettings);
+  const [ipsum, setIpsum] = useState(null);
 
-    this.state = {
-      ipsum: null,
-      settings: {
-        minWords:       5,
-        maxWords:       15,
-        minSentences:   3,
-        maxSentences:   7,
-        numParagraphs:  4,
-        format:         'plain',
-        smash64:  {
-          characters: true,
-          stages:     true,
-          items:      true,
-        },
-        melee:  {
-          characters: true,
-          stages:     true,
-          items:      true,
-        },
-        brawl:  {
-          characters: true,
-          stages:     true,
-          items:      true,
-        },
-        pm:  {
-          characters: true,
-          stages:     true,
-          items:      true,
-        },
-        smash4:  {
-          characters: true,
-          stages:     true,
-          items:      true,
-        },
-        ultimate: {
-          characters: true,
-          stages:     true,
-          items:      true,
-        }
-      },
-      displayCookieBanner: true,
-      displayCookieExplanation: false,
-      darkMode: true,
-      ipsumCopied: false,
-    };
-  }
+  let ipsumCopied = false;
+  let displayCookieBanner = true;
+  let displayCookieExplanation = false;
 
-  setCookies = () => {
+  const setCookies = () => {
     const settings = JSON.stringify(this.state.settings);
     cookie.save('smashipsum__settings', settings, { path: '/' })
   }
 
-  getData = () => {
+  const getData = () => {
     if (this.state) {
       const settings = {
         numParagraphs:  this.state.settings.numParagraphs,
@@ -110,7 +70,7 @@ class App extends React.Component {
     }
   }
 
-  onCheckboxCheck = (e) => {
+  const onCheckboxCheck = (e) => {
     let { instance, name, checked } = e.target;
 
     this.setState({
@@ -126,7 +86,7 @@ class App extends React.Component {
     })
   }
 
-  onSelectChange = (name) => (value) => {
+  const onSelectChange = (name) => (value) => {
     this.setState({
       settings: {
         ...this.state.settings,
@@ -137,7 +97,7 @@ class App extends React.Component {
     })
   }
 
-  onNumberChange = (name) => (value) => {
+  const onNumberChange = (name) => (value) => {
     this.setState({
       settings: {
         ...this.state.settings,
@@ -148,7 +108,7 @@ class App extends React.Component {
     })
   }
 
-  onCookieBannerSelection = useCookies => (e) => {
+  const onCookieBannerSelection = useCookies => (e) => {
     console.log(e);
     e.preventDefault();
 
@@ -163,7 +123,7 @@ class App extends React.Component {
     })
   };
 
-  onCookieExplanation = (event) => {
+  const onCookieExplanation = (event) => {
     event.preventDefault();
 
     this.setState({
@@ -176,7 +136,7 @@ class App extends React.Component {
     })
   };
 
-  onAnchorScroll = field => (event) => {
+  const onAnchorScroll = field => (event) => {
     event.preventDefault();
 
     document.getElementById(field).scrollIntoView({behavior:"smooth", block: "start"});
@@ -190,7 +150,7 @@ class App extends React.Component {
   //   })
   // }
 
-  copyData = (e) => {
+  const copyData = (e) => {
     e.preventDefault();
 
     navigator.clipboard.writeText(this.state.ipsum);
@@ -200,63 +160,64 @@ class App extends React.Component {
     })
   };
 
-  componentDidMount() {
-    const cookieConsent = cookie.load('smashipsum__cookie-consent');
-    const settingsCookieValue = cookie.load('smashipsum__settings');
-    const darkModeCookieValue = cookie.load('smashipsum__darkmode');
+  // componentDidMount() {
+  //   const cookieConsent = cookie.load('smashipsum__cookie-consent');
+  //   const settingsCookieValue = cookie.load('smashipsum__settings');
+  //   const darkModeCookieValue = cookie.load('smashipsum__darkmode');
+  //
+  //   if (cookieConsent === 'true' && (settingsCookieValue || darkModeCookieValue)) {
+  //     this.setState({
+  //       settings: settingsCookieValue,
+  //       darkMode: darkModeCookieValue === 'true',
+  //     },() => {
+  //       this.getData();
+  //     })
+  //   }
+  //   else {
+  //     this.getData();
+  //   }
+  //
+  //   this.setState({
+  //     displayCookieBanner: cookieConsent === undefined
+  //   })
+  //
+  //   ReactGA.initialize('UA-113771362-1');
+  //   ReactGA.pageview('/');
+  // }
 
-    if (cookieConsent === 'true' && (settingsCookieValue || darkModeCookieValue)) {
-      this.setState({
-        settings: settingsCookieValue,
-        darkMode: darkModeCookieValue === 'true',
-      },() => {
-        this.getData();
-      })
-    }
-    else {
-      this.getData();
-    }
-
-    this.setState({
-      displayCookieBanner: cookieConsent === undefined
-    })
-
-    ReactGA.initialize('UA-113771362-1');
-    ReactGA.pageview('/');
-  }
-
-  render() {
-    return (
-      <>
+  return (
+    <>
+    <CookieProvider>
       <ThemeProvider>
-        <Layout className={this.state.darkMode ? '' : 'lite-mode'}>
-          { this.state.displayCookieBanner && (
-            <CookieBanner
-              displayCookieExplanation={this.state.displayCookieExplanation}
-              onCookieBannerSelection={this.onCookieBannerSelection}
-              onCookieExplanation={this.onCookieExplanation} />
-          )}
+        <Layout>
+          {
+            // this.state.displayCookieBanner && (
+            // <CookieBanner
+            //   displayCookieExplanation={this.state.displayCookieExplanation}
+            //   onCookieBannerSelection={this.onCookieBannerSelection}
+            //   onCookieExplanation={this.onCookieExplanation} />
+            // )
+          }
 
-          <Header onAnchorScroll={this.onAnchorScroll} toggleDarkMode={this.toggleDarkMode} darkMode={this.state.darkMode} />
+          <Header onAnchorScroll={onAnchorScroll}/>
           <Content>
             <Hero />
 
-            <Settings settings={this.state.settings}
-              onCheckboxCheck={this.onCheckboxCheck}
-              onNumberChange={this.onNumberChange}
-              onSelectChange={this.onSelectChange}/>
+            <Settings settings={settings}
+              onCheckboxCheck={onCheckboxCheck}
+              onNumberChange={onNumberChange}
+              onSelectChange={onSelectChange}/>
 
-            <Ipsum ipsum={this.state.ipsum}
-              getData={this.getData}
-              copyData={this.copyData}
-              ipsumCopied={this.state.ipsumCopied}/>
+            <Ipsum ipsum={ipsum}
+              getData={getData}
+              copyData={copyData}
+              ipsumCopied={ipsumCopied}/>
+
           </Content>
           <Footer />
         </Layout>
       </ThemeProvider>
-      </>
-    );
-  }
+    </CookieProvider>
+    </>
+  );
 }
-
-export default App;

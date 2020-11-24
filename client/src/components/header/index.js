@@ -14,7 +14,7 @@ export default function HeaderContent(props) {
     <Header className={`header ${themeClass}`}>
       <div className="header__container">
       	<div className="header__left">
-      		<a className="header__home-link">
+      		<a className="header__home-link" href="">
       			Smash<span>Ipsum</span>
       		</a>
       	</div>

@@ -17,7 +17,7 @@ export const ThemeProvider = ({children}) => {
 
   const toggleTheme = () => {
     setDarkTheme(prevDarkTheme => !prevDarkTheme);
-    setThemeClass(prevThemeClass => prevThemeClass != "" ? "" : "lite-mode");
+    setThemeClass(prevThemeClass => prevThemeClass !== "" ? "" : "lite-mode");
   }
 
   return (

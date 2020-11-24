@@ -20,7 +20,8 @@
   &:hover,
   &:focus {
     color: $color-main;
-
+    outline: none;
+    
     &:after {
       background-color: $color-main;
       width: 100%;
