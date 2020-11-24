@@ -17,11 +17,11 @@ export const ThemeProvider = ({children}) => {
 
   const toggleTheme = () => {
     setDarkTheme(prevDarkTheme => !prevDarkTheme);
-    setThemeClass(darkTheme ? "" : "lite-mode");
+    setThemeClass(prevThemeClass => prevThemeClass != "" ? "" : "lite-mode");
   }
 
   return (
-    <ThemeContext.Provider value={themeClass}>
+    <ThemeContext.Provider value={{darkTheme, themeClass}}>
       <ThemeUpdateContext.Provider value={toggleTheme}>
         {children}
       </ThemeUpdateContext.Provider>
