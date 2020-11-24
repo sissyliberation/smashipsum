@@ -182,13 +182,13 @@ class App extends React.Component {
     document.getElementById(field).scrollIntoView({behavior:"smooth", block: "start"});
   }
 
-  toggleDarkMode = () => {
-    this.setState({
-      darkMode: !this.state.darkMode
-    }, () => {
-      cookie.save('smashipsum__darkmode', this.state.darkMode, { path: '/' });
-    })
-  }
+  // toggleDarkMode = () => {
+  //   this.setState({
+  //     darkMode: !this.state.darkMode
+  //   }, () => {
+  //     cookie.save('smashipsum__darkmode', this.state.darkMode, { path: '/' });
+  //   })
+  // }
 
   copyData = (e) => {
     e.preventDefault();
