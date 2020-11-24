@@ -14,7 +14,7 @@
     @include container;
   }
 
-  .lite-mode & {
+  &.lite-mode {
     background-color: $color-lite;
     color: $color-dark;
   }
