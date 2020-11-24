@@ -29,101 +29,87 @@ export default function AppInner(props) {
   const [displayCookieExplanation, setDisplayCookieExplanation] = useState(false);
 
   const setCookies = () => {
-    const settings = JSON.stringify(this.state.settings);
-    cookie.save('smashipsum__settings', settings, { path: '/' })
-  }
+    if (cookieConsent) {
+      const savedSettings = JSON.stringify(settings);
+      cookie.save('smashipsum__settings', savedSettings, { path: '/' });
+    }
+  };
 
   const getData = () => {
-    if (this.state) {
-      const settings = {
-        numParagraphs:  settings.numParagraphs,
-        minWords:       settings.minWords,
-        maxWords:       settings.maxWords,
-        minSentences:   settings.minSentences,
-        maxSentences:   settings.maxSentences,
-        format:         settings.format,
-        smash64:        settings.smash64,
-        melee:          settings.melee,
-        brawl:          settings.brawl,
-        pm:             settings.pm,
-        smash4:         settings.smash4,
-        ultimate:       settings.ultimate
-      };
+    const params = {
+      numParagraphs:  settings.numParagraphs,
+      minWords:       settings.minWords,
+      maxWords:       settings.maxWords,
+      minSentences:   settings.minSentences,
+      maxSentences:   settings.maxSentences,
+      format:         settings.format,
+      smash64:        settings.smash64,
+      melee:          settings.melee,
+      brawl:          settings.brawl,
+      pm:             settings.pm,
+      smash4:         settings.smash4,
+      ultimate:       settings.ultimate
+    };
 
-      axios.get('/api/ipsum', {
-        params: settings
-      })
-      .then(res => {
-        let { ipsum } = res.data;
+    axios.get('/api/ipsum', {
+      params: params
+    })
+    .then(res => {
+      let { ipsum } = res.data;
 
-        setIpsum(ipsum);
-        setIpsumCopied(false);
+      setIpsum(ipsum);
+      setIpsumCopied(false);
 
-        if (cookieConsent) {
-          ReactGA.event({
-            category: 'Ipsum',
-            action: 'Generate Text'
-          });
-        }
-      })
-      .catch(err => {
-        console.log(err);
-      })
-    }
+      if (cookieConsent) {
+        ReactGA.event({
+          category: 'Ipsum',
+          action: 'Generate Text'
+        });
+      }
+    })
+    .catch(err => {
+      console.log(err);
+    });
   };
 
   const onCheckboxCheck = (e) => {
     let { instance, name, checked } = e.target;
 
-    this.setState({
-      settings: {
-        ...this.state.settings,
-        [instance]: {
-          ...this.state.settings[instance],
-          [name]: checked
-        }
-      }
-    }, () => {
-      this.setCookies();
-    })
+    const newSettings = {
+      ...settings,
+      [instance]: {
+        ...settings[instance],
+        [name]: checked,
+      },
+    };
+
+    setSettings(newSettings);
+    setCookies();
   }
 
   const onSelectChange = (name) => (value) => {
-    this.setState({
-      settings: {
-        ...this.state.settings,
-        [name]: value
-      }
-    }, () => {
-      this.setCookies();
-    })
+    const newSettings = {
+      ...settings,
+      [name]: value,
+    };
+
+    setSettings(newSettings);
+    setCookies();
   }
 
   const onNumberChange = (name) => (value) => {
-    this.setState({
-      settings: {
-        ...this.state.settings,
-        [name]: value
-      }
-    }, () => {
-      this.setCookies();
-    })
+    const newSettings = {
+      ...settings,
+      [name]: value,
+    };
+
+    setSettings(newSettings);
+    setCookies();
   }
 
   const onCookieBannerSelection = () => {
-    console.log('-------');
-    // console.log(e);
-    // e.preventDefault();
-
     setDisplayCookieBanner(false);
     setDisplayCookieExplanation(false);
-
-    // this.setState({
-    //   displayCookieBanner: false
-    // }, () => {
-    //   cookie.save('smashipsum__cookie-consent', useCookies, { path: '/' });
-    //
-    // })
   };
 
   const onCookieExplanation = (e) => {
@@ -138,19 +124,10 @@ export default function AppInner(props) {
     document.getElementById(field).scrollIntoView({behavior:"smooth", block: "start"});
   }
 
-  // toggleDarkMode = () => {
-  //   this.setState({
-  //     darkMode: !this.state.darkMode
-  //   }, () => {
-  //     cookie.save('smashipsum__darkmode', this.state.darkMode, { path: '/' });
-  //   })
-  // }
-
   const copyData = (e) => {
     e.preventDefault();
 
-    navigator.clipboard.writeText(this.state.ipsum);
-
+    navigator.clipboard.writeText(ipsum);
     setIpsumCopied(true);
   };
 
