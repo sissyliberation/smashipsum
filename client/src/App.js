@@ -149,19 +149,20 @@ class App extends React.Component {
     })
   }
 
-  onCookieBannerSelection = (event) => {
-    event.preventDefault();
+  onCookieBannerSelection = useCookies => (e) => {
+    console.log(e);
+    e.preventDefault();
 
     this.setState({
       displayCookieBanner: false
     }, () => {
-      cookie.save('smashipsum__cookie-consent', true, { path: '/' });
+      cookie.save('smashipsum__cookie-consent', useCookies, { path: '/' });
       ReactGA.event({
         category: 'Cookie Consent',
         action: 'Click Okay'
       });
     })
-  }
+  };
 
   onCookieExplanation = (event) => {
     event.preventDefault();
@@ -174,7 +175,7 @@ class App extends React.Component {
         action: 'View Explanation'
       });
     })
-  }
+  };
 
   onAnchorScroll = field => (event) => {
     event.preventDefault();
