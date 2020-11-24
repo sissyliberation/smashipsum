@@ -7,16 +7,14 @@ import { Layout } from 'antd';
 import Header from './components/header';
 import Hero from './components/hero';
 import Footer from './components/footer';
-
 import Settings from './components/settings';
 import Ipsum from './components/ipsum';
-
 import CookieBanner from './components/cookie-banner';
+import { ThemeProvider } from './ThemeContext';
 import './app.scss';
 
-import { ThemeProvider } from './ThemeContext';
-
 const { Content } = Layout;
+
 
 class App extends React.Component {
   constructor(props) {

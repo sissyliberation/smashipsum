@@ -62,7 +62,8 @@
 
   &.lite-mode {
     color: $color-dark;
-
+    background-color: $color-lite;
+    
     #{$base}__img--inverse
       {
         filter: invert(1);
