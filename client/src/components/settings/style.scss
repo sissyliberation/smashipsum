@@ -113,4 +113,8 @@
       }
     }
   }
+
+  &.lite-mode {
+    background-color: $color-lite;
+  }
 }
