@@ -2,8 +2,10 @@
 @import '../../mixins';
 
 .header {
+  $base : &;
   @include layout-base;
   @include label;
+  margin-bottom: 0;
   text-align: right;
   background-color: $color-dark;
   color: $color-lite;
@@ -29,6 +31,7 @@
 
   &__home-link {
     color: $color-lite;
+    transition: none;
 
     span {
       color: $color-main;
@@ -44,11 +47,11 @@
     }
   }
 
-  .lite-mode & {
+  &.lite-mode {
     background-color: $color-lite;
     color: $color-dark;
 
-    &__home-link {
+    #{$base}__home-link {
       color: $color-dark;
     }
   }

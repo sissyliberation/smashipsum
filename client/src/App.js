@@ -7,11 +7,10 @@ import { Layout } from 'antd';
 import Header from './components/header';
 import Hero from './components/hero';
 import Footer from './components/footer';
-
 import Settings from './components/settings';
 import Ipsum from './components/ipsum';
-
 import CookieBanner from './components/cookie-banner';
+import { ThemeProvider } from './ThemeContext';
 import './app.scss';
 
 const { Content } = Layout;
@@ -183,13 +182,13 @@ class App extends React.Component {
     document.getElementById(field).scrollIntoView({behavior:"smooth", block: "start"});
   }
 
-  toggleDarkMode = () => {
-    this.setState({
-      darkMode: !this.state.darkMode
-    }, () => {
-      cookie.save('smashipsum__darkmode', this.state.darkMode, { path: '/' });
-    })
-  }
+  // toggleDarkMode = () => {
+  //   this.setState({
+  //     darkMode: !this.state.darkMode
+  //   }, () => {
+  //     cookie.save('smashipsum__darkmode', this.state.darkMode, { path: '/' });
+  //   })
+  // }
 
   copyData = (e) => {
     e.preventDefault();
@@ -228,31 +227,34 @@ class App extends React.Component {
 
   render() {
     return (
-      <Layout className={this.state.darkMode ? '' : 'lite-mode'}>
-        { this.state.displayCookieBanner && (
-          <CookieBanner
-            displayCookieExplanation={this.state.displayCookieExplanation}
-            onCookieBannerSelection={this.onCookieBannerSelection}
-            onCookieExplanation={this.onCookieExplanation} />
-        )}
+      <>
+      <ThemeProvider>
+        <Layout className={this.state.darkMode ? '' : 'lite-mode'}>
+          { this.state.displayCookieBanner && (
+            <CookieBanner
+              displayCookieExplanation={this.state.displayCookieExplanation}
+              onCookieBannerSelection={this.onCookieBannerSelection}
+              onCookieExplanation={this.onCookieExplanation} />
+          )}
 
-        <Header onAnchorScroll={this.onAnchorScroll} toggleDarkMode={this.toggleDarkMode} darkMode={this.state.darkMode} />
-        <Content>
-          <Hero />
+          <Header onAnchorScroll={this.onAnchorScroll} toggleDarkMode={this.toggleDarkMode} darkMode={this.state.darkMode} />
+          <Content>
+            <Hero />
 
-          <Settings settings={this.state.settings}
-            onCheckboxCheck={this.onCheckboxCheck}
-            onNumberChange={this.onNumberChange}
-            onSelectChange={this.onSelectChange}/>
+            <Settings settings={this.state.settings}
+              onCheckboxCheck={this.onCheckboxCheck}
+              onNumberChange={this.onNumberChange}
+              onSelectChange={this.onSelectChange}/>
 
-          <Ipsum ipsum={this.state.ipsum}
-            getData={this.getData}
-            copyData={this.copyData}
-            ipsumCopied={this.state.ipsumCopied}/>
-        </Content>
-        <Footer />
-
-      </Layout>
+            <Ipsum ipsum={this.state.ipsum}
+              getData={this.getData}
+              copyData={this.copyData}
+              ipsumCopied={this.state.ipsumCopied}/>
+          </Content>
+          <Footer />
+        </Layout>
+      </ThemeProvider>
+      </>
     );
   }
 }

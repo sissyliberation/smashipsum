@@ -1,12 +1,15 @@
 import React from 'react';
+import { useTheme } from '../../ThemeContext';
 import { Checkbox, InputNumber, Select } from 'antd';
 import './style.scss';
 
 const { Option } = Select;
 
 export default function Settings(props) {
+  const { themeClass } = useTheme();
+
   return (
-    <div className="settings" id="settings">
+    <div className={`settings ${themeClass}`} id="settings">
       <h2>Settings</h2>
       <div className="settings__content settings__content--games">
         <div className="settings__instance">
@@ -53,14 +56,14 @@ export default function Settings(props) {
         </div>
         <div className="settings__instance">
           <div className="settings__instance__title">max words / sentence</div>
-          
+
           <InputNumber name={"maxWords"} min={1} value={props.settings.maxWords} defaultValue={props.settings.maxWords} onChange={props.onNumberChange("maxWords")} />
         </div>
         <div className="settings__instance">
           <div className="settings__instance__title">min sentences / paragraph</div>
           <InputNumber name={"minSentences"} min={1} value={props.settings.minSentences} defaultValue={props.settings.minSentences} onChange={props.onNumberChange("minSentences")} />
         </div>
-        <div className="settings__instance">        
+        <div className="settings__instance">
           <div className="settings__instance__title">max sentences / paragraph</div>
           <InputNumber name={"maxSentences"} min={1} value={props.settings.maxSentences} defaultValue={props.settings.maxSentences} onChange={props.onNumberChange("maxSentences")} />
         </div>
@@ -77,5 +80,5 @@ export default function Settings(props) {
         </div>
       </div>
     </div>
-   );
+  );
 };
