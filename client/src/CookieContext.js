@@ -12,8 +12,21 @@ export const useCookiesUpdate = () => {
   return useContext(CookieUpdateContext);
 };
 
+const cookieConsentValue = cookie.load('smashipsum__cookie-consent');
+let initialCookieConsentVal;
+
+if (cookieConsentValue === "true") {
+  initialCookieConsentVal = true;
+}
+else if (cookieConsentValue == "false") {
+  initialCookieConsentVal = false;
+}
+else {
+  initialCookieConsentVal = undefined;
+}
+
 export const CookieProvider = ({children}) => {
-  const [cookieConsent, setCookieConsent] = useState(false);
+  const [cookieConsent, setCookieConsent] = useState(initialCookieConsentVal);
 
   const allowCookies = (val) => {
     setCookieConsent(val);

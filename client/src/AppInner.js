@@ -18,13 +18,14 @@ import {initialSettings} from './data';
 const { Content } = Layout;
 
 export default function AppInner(props) {
-  const { cookieConsent } = useCookies();
+  const cookieConsent  = useCookies();
+  console.log('meow', cookieConsent);
 
   const [settings, setSettings] = useState(initialSettings);
   const [ipsum, setIpsum] = useState(null);
   const [ipsumCopied, setIpsumCopied] = useState(false);
 
-  const [displayCookieBanner, setDisplayCookieBanner] = useState(true);
+  const [displayCookieBanner, setDisplayCookieBanner] = useState(cookieConsent !== undefined ? false: true);
   const [displayCookieExplanation, setDisplayCookieExplanation] = useState(false);
 
   const setCookies = () => {
@@ -69,7 +70,7 @@ export default function AppInner(props) {
         console.log(err);
       })
     }
-  }
+  };
 
   const onCheckboxCheck = (e) => {
     let { instance, name, checked } = e.target;
@@ -109,16 +110,20 @@ export default function AppInner(props) {
     })
   }
 
-  const onCookieBannerSelection = useCookies => (e) => {
-    console.log(e);
-    e.preventDefault();
+  const onCookieBannerSelection = () => {
+    console.log('-------');
+    // console.log(e);
+    // e.preventDefault();
 
-    this.setState({
-      displayCookieBanner: false
-    }, () => {
-      cookie.save('smashipsum__cookie-consent', useCookies, { path: '/' });
+    setDisplayCookieBanner(false);
+    setDisplayCookieExplanation(false);
 
-    })
+    // this.setState({
+    //   displayCookieBanner: false
+    // }, () => {
+    //   cookie.save('smashipsum__cookie-consent', useCookies, { path: '/' });
+    //
+    // })
   };
 
   const onCookieExplanation = (e) => {
