@@ -1,6 +1,7 @@
 @import '../../variables';
 
 .hero {
+  $base: &;
   @include container;
   @include base;
   color: $color-lite;
@@ -59,13 +60,16 @@
     margin: 0 auto;
   }
 
-  .lite-mode & {
+  &.lite-mode {
     color: $color-dark;
 
-    &__img {
-      &--inverse {
+    #{$base}__img--inverse
+      {
         filter: invert(1);
+
       }
-    }
+
+
+
   }
 }

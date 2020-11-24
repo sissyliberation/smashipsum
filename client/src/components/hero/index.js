@@ -1,4 +1,5 @@
 import React from 'react';
+import {useTheme, useThemeUpdate} from '../../ThemeContext';
 
 import logo64 from '../../img/n64.png';
 import logoMelee from '../../img/melee.png';
@@ -10,8 +11,10 @@ import logoUltimate from '../../img/ultimate.png';
 import './style.scss';
 
 export default function Hero(props) {
+  const { themeClass } = useTheme();
+
   return (
-    <div className="hero">
+    <div className={`hero ${themeClass}`}>
       <div className="hero__container">
 
         <h1>Placeholder Text</h1>
