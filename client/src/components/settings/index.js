@@ -80,5 +80,5 @@ export default function Settings(props) {
         </div>
       </div>
     </div>
-   );
+  );
 };

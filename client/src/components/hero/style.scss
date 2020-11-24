@@ -65,10 +65,8 @@
     color: $color-dark;
     background-color: $color-lite;
 
-    #{$base}__img--inverse
-      {
-        filter: invert(1);
-
-      }
+    #{$base}__img--inverse {
+      filter: invert(1);
+    }
   }
 }
