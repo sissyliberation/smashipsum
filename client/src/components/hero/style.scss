@@ -5,6 +5,7 @@
   @include container;
   @include base;
   color: $color-lite;
+  background-color: $color-dark;
 
   padding-top: 3.5em;
   padding-bottom: 3.5em;
@@ -63,14 +64,11 @@
   &.lite-mode {
     color: $color-dark;
     background-color: $color-lite;
-    
+
     #{$base}__img--inverse
       {
         filter: invert(1);
 
       }
-
-
-
   }
 }

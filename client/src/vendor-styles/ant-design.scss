@@ -1,5 +1,10 @@
 @import '../variables';
 
+// layout
+.ant-layout {
+  background-color: $color-lite;
+}
+
 // checkbox
 .ant-checkbox-wrapper {
   .ant-checkbox {

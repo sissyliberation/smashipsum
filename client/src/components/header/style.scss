@@ -5,6 +5,7 @@
   $base : &;
   @include layout-base;
   @include label;
+  margin-bottom: 0;
   text-align: right;
   background-color: $color-dark;
   color: $color-lite;
@@ -30,6 +31,7 @@
 
   &__home-link {
     color: $color-lite;
+    transition: none;
 
     span {
       color: $color-main;

@@ -2,9 +2,10 @@
 
 .settings {
   $e : &;
-
   @include container;
   @include base;
+  color: $color-lite;
+  background-color: $color-dark;
 
   &__content {
     margin-top: 2em;
