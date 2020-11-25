@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useEffect}  from 'react';
+import cookie from 'react-cookies';
 import { Layout } from 'antd';
+import {useCookies} from '../../CookieContext';
 import {useTheme, useThemeUpdate} from '../../ThemeContext';
 
 import './style.scss';
@@ -7,8 +9,18 @@ import './style.scss';
 const { Header } = Layout;
 
 export default function HeaderContent(props) {
+  const cookieConsent  = useCookies();
+
   const { darkTheme, themeClass } = useTheme();
   const toggleTheme = useThemeUpdate();
+  const changeTheme = (e) => {
+    toggleTheme();
+  };
+  useEffect(() => {
+    if (cookieConsent) {
+      cookie.save('smashipsum__darkmode', darkTheme, { path: '/' });
+    }
+  }, [darkTheme]);
 
   return (
     <Header className={`header ${themeClass}`}>
@@ -21,7 +33,7 @@ export default function HeaderContent(props) {
       	<div className="header__right">
       		<a className="header__link" onClick={props.onAnchorScroll('settings')} href="#settings">Settings</a>
       		<a className="header__link" onClick={props.onAnchorScroll('generator')} href="#generator">Generator</a>
-          <button className="header__link" onClick={toggleTheme} aria-label="toggle lite / dark mode"> {darkTheme ? 'Lite' : 'Dark'} Mode</button>
+          <button className="header__link" onClick={changeTheme} aria-label="toggle lite / dark mode"> {darkTheme ? 'Lite' : 'Dark'} Mode</button>
       	</div>
       </div>
     </Header>

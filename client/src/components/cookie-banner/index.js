@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactGA from 'react-ga';
-import {useCookies, useCookiesUpdate} from '../../CookieContext';
+import {useCookiesUpdate} from '../../CookieContext';
 
 import './style.scss';
 
