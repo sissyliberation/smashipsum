@@ -1,6 +1,6 @@
 # smashipsum
 Smash Bros Lorem Ipsum Generator
-link: [http:/smashipsum.herokuapp.com/](http://smashipsum.herokuapp.com/)
+link: [https:/smashipsum.herokuapp.com/](https://smashipsum.herokuapp.com/)
 
 ## Built With
 
