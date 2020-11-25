@@ -1,4 +1,4 @@
-export const initialSettings = {
+export const defaultSettings = {
   minWords:       5,
   maxWords:       15,
   minSentences:   3,

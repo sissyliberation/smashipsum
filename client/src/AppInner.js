@@ -1,4 +1,4 @@
-import React, { useContext, useState} from 'react';
+import React, { useState, useEffect} from 'react';
 import ReactGA from 'react-ga';
 import axios from 'axios';
 import cookie from 'react-cookies';
@@ -13,15 +13,17 @@ import CookieBanner from './components/cookie-banner';
 import { useCookies } from './CookieContext';
 import './app.scss';
 
-import {initialSettings} from './data';
+import {defaultSettings} from './data';
 
 const { Content } = Layout;
 
 export default function AppInner(props) {
   const cookieConsent  = useCookies();
-  console.log('meow', cookieConsent);
 
-  const [settings, setSettings] = useState(initialSettings);
+  const settingsCookieValue = cookie.load('smashipsum__settings');
+
+  const [settings, setSettings] = useState(cookieConsent && settingsCookieValue ? settingsCookieValue : defaultSettings);
+
   const [ipsum, setIpsum] = useState(null);
   const [ipsumCopied, setIpsumCopied] = useState(false);
 
@@ -84,7 +86,6 @@ export default function AppInner(props) {
     };
 
     setSettings(newSettings);
-    setCookies();
   }
 
   const onSelectChange = (name) => (value) => {
@@ -94,7 +95,6 @@ export default function AppInner(props) {
     };
 
     setSettings(newSettings);
-    setCookies();
   }
 
   const onNumberChange = (name) => (value) => {
@@ -104,7 +104,6 @@ export default function AppInner(props) {
     };
 
     setSettings(newSettings);
-    setCookies();
   }
 
   const onCookieBannerSelection = () => {
@@ -131,58 +130,57 @@ export default function AppInner(props) {
     setIpsumCopied(true);
   };
 
-  // componentDidMount() {
-  //   const cookieConsent = cookie.load('smashipsum__cookie-consent');
-  //   const settingsCookieValue = cookie.load('smashipsum__settings');
-  //   const darkModeCookieValue = cookie.load('smashipsum__darkmode');
-  //
-  //   if (cookieConsent === 'true' && (settingsCookieValue || darkModeCookieValue)) {
-  //     this.setState({
-  //       settings: settingsCookieValue,
-  //       darkMode: darkModeCookieValue === 'true',
-  //     },() => {
-  //       this.getData();
-  //     })
-  //   }
-  //   else {
-  //     this.getData();
-  //   }
-  //
-  //   this.setState({
-  //     displayCookieBanner: cookieConsent === undefined
-  //   })
-  //
-  //   ReactGA.initialize('UA-113771362-1');
-  //   ReactGA.pageview('/');
-  // }
+  const initAnalytics = () => {
+    ReactGA.initialize('UA-113771362-1');
+    ReactGA.pageview('/');
+  };
+
+  // on load
+  useEffect(() => {
+    if (cookieConsent) {
+      initAnalytics();
+    }
+
+    getData();
+  }, []);
+
+  // save settings to cookie on change
+  useEffect(() => {
+    setCookies();
+  }, [settings]);
 
   return (
     <>
       <Layout>
+        {
+          displayCookieBanner && (
+          <CookieBanner
+            displayCookieExplanation={displayCookieExplanation}
+            onCookieBannerSelection={onCookieBannerSelection}
+            onCookieExplanation={onCookieExplanation}
+            initAnalytics={initAnalytics} />
+          )
+        }
+
+        <Header onAnchorScroll={onAnchorScroll}/>
+        <Content>
+          <Hero />
           {
-            displayCookieBanner && (
-            <CookieBanner
-              displayCookieExplanation={displayCookieExplanation}
-              onCookieBannerSelection={onCookieBannerSelection}
-              onCookieExplanation={onCookieExplanation} />
+            settings != null && (
+              <>
+              <Settings settings={settings}
+                onCheckboxCheck={onCheckboxCheck}
+                onNumberChange={onNumberChange}
+                onSelectChange={onSelectChange}/>
+
+              <Ipsum ipsum={ipsum}
+                getData={getData}
+                copyData={copyData}
+                ipsumCopied={ipsumCopied}/>
+              </>
             )
           }
-
-          <Header onAnchorScroll={onAnchorScroll}/>
-          <Content>
-            <Hero />
-
-            <Settings settings={settings}
-              onCheckboxCheck={onCheckboxCheck}
-              onNumberChange={onNumberChange}
-              onSelectChange={onSelectChange}/>
-
-            <Ipsum ipsum={ipsum}
-              getData={getData}
-              copyData={copyData}
-              ipsumCopied={ipsumCopied}/>
-
-          </Content>
+        </Content>
         <Footer />
       </Layout>
     </>

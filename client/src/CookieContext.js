@@ -18,7 +18,7 @@ let initialCookieConsentVal;
 if (cookieConsentValue === "true") {
   initialCookieConsentVal = true;
 }
-else if (cookieConsentValue == "false") {
+else if (cookieConsentValue === "false") {
   initialCookieConsentVal = false;
 }
 else {
