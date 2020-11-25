@@ -2,10 +2,13 @@
 
 .ipsum {
   $base : &;
-  @include container;
   @include base;
   color: $color-lite;
   background-color: $color-dark;
+
+  &__container {
+    @include container;
+  }
 
   &__content {
     margin-top: 2em;
