@@ -1,6 +1,7 @@
 @import '~antd/dist/antd.css';
-@import './vendor-styles/all';
+@import 'variables';
 @import 'mixins';
+@import './vendor-styles/all';
 
 body {
   margin: 0;
@@ -19,6 +20,7 @@ h1, h2, h3, h4, h5, h6 {
   font-family: $font-main;
   color: $color-lite;
   font-weight: 900;
+  @include standard-transition(color);
 
   .lite-mode & {
     color: $color-dark;
