@@ -2,7 +2,6 @@
 
 .hero {
   $base: &;
-  @include container;
   @include base;
   color: $color-lite;
   background-color: $color-dark;
@@ -13,6 +12,10 @@
   @include tablet {
     padding-top: 6.5em;
     padding-bottom: 6.5em;
+  }
+
+  &__container {
+    @include container;
   }
 
   &__content {
