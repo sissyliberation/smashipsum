@@ -1,6 +1,6 @@
 import React, { useContext, useState} from 'react';
 import cookie from 'react-cookies';
-
+import {cookieNames, initialCookieConsentVal} from './data';
 const CookieContext = React.createContext();
 const CookieUpdateContext = React.createContext();
 
@@ -12,25 +12,12 @@ export const useCookiesUpdate = () => {
   return useContext(CookieUpdateContext);
 };
 
-const cookieConsentValue = cookie.load('smashipsum__cookie-consent');
-let initialCookieConsentVal;
-
-if (cookieConsentValue === "true") {
-  initialCookieConsentVal = true;
-}
-else if (cookieConsentValue === "false") {
-  initialCookieConsentVal = false;
-}
-else {
-  initialCookieConsentVal = undefined;
-}
-
 export const CookieProvider = ({children}) => {
   const [cookieConsent, setCookieConsent] = useState(initialCookieConsentVal);
 
   const allowCookies = (val) => {
     setCookieConsent(val);
-    cookie.save('smashipsum__cookie-consent', val, { path: '/' });
+    cookie.save(cookieNames.cookieConsent, val, { path: '/' });
   }
 
   return (

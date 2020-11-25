@@ -3,7 +3,7 @@ import cookie from 'react-cookies';
 import { Layout } from 'antd';
 import {useCookies} from '../../CookieContext';
 import {useTheme, useThemeUpdate} from '../../ThemeContext';
-
+import {cookieNames} from '../../data';
 import './style.scss';
 
 const { Header } = Layout;
@@ -16,9 +16,10 @@ export default function HeaderContent(props) {
   const changeTheme = (e) => {
     toggleTheme();
   };
+
   useEffect(() => {
     if (cookieConsent) {
-      cookie.save('smashipsum__darkmode', darkTheme, { path: '/' });
+      cookie.save(cookieNames.darkMode, darkTheme, { path: '/' });
     }
   }, [darkTheme]);
 
@@ -26,7 +27,7 @@ export default function HeaderContent(props) {
     <Header className={`header ${themeClass}`}>
       <div className="header__container">
       	<div className="header__left">
-      		<a className="header__home-link" href="">
+      		<a className="header__home-link" href="/">
       			Smash<span>Ipsum</span>
       		</a>
       	</div>

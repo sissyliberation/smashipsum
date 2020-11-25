@@ -11,6 +11,7 @@ import Settings from './components/settings';
 import Ipsum from './components/ipsum';
 import CookieBanner from './components/cookie-banner';
 import { useCookies } from './CookieContext';
+import {cookieNames} from './data';
 import './app.scss';
 
 import {defaultSettings} from './data';
@@ -20,7 +21,7 @@ const { Content } = Layout;
 export default function AppInner(props) {
   const cookieConsent  = useCookies();
 
-  const settingsCookieValue = cookie.load('smashipsum__settings');
+  const settingsCookieValue = cookie.load(cookieNames.settings);
 
   const [settings, setSettings] = useState(cookieConsent && settingsCookieValue ? settingsCookieValue : defaultSettings);
 
@@ -33,7 +34,7 @@ export default function AppInner(props) {
   const setCookies = () => {
     if (cookieConsent) {
       const savedSettings = JSON.stringify(settings);
-      cookie.save('smashipsum__settings', savedSettings, { path: '/' });
+      cookie.save(cookieNames.settings, savedSettings, { path: '/' });
     }
   };
 

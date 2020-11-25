@@ -1,5 +1,6 @@
 import React, { useContext, useState} from 'react';
 import cookie from 'react-cookies';
+import {cookieNames, themeClasses, initialCookieConsentVal} from './data';
 
 const ThemeContext = React.createContext();
 const ThemeUpdateContext = React.createContext();
@@ -12,28 +13,15 @@ export const useThemeUpdate = () => {
   return useContext(ThemeUpdateContext);
 };
 
-const cookieConsentValue = cookie.load('smashipsum__cookie-consent');
-let initialCookieConsentVal;
-
-if (cookieConsentValue === "true") {
-  initialCookieConsentVal = true;
-}
-else if (cookieConsentValue === "false") {
-  initialCookieConsentVal = false;
-}
-else {
-  initialCookieConsentVal = undefined;
-}
-
-const darkModeCookieValue = cookie.load('smashipsum__darkmode');
+const darkModeCookieValue = cookie.load(cookieNames.darkMode);
 
 let initialDarkTheme = true;
-let initialThemeClass = "";
+let initialThemeClass = themeClasses.dark;
 
 if (initialCookieConsentVal) {
   if (darkModeCookieValue && darkModeCookieValue !== 'true') {
     initialDarkTheme = false;
-    initialThemeClass = "lite-mode";
+    initialThemeClass = themeClasses.lite;
   }
 }
 
@@ -44,11 +32,11 @@ export const ThemeProvider = ({children}) => {
   const toggleTheme = val => {
     if (val !== undefined) {
       setDarkTheme(val);
-      setThemeClass(val ? "" : "lite-mode");
+      setThemeClass(val ? themeClasses.dark : themeClasses.lite);
     }
     else {
       setDarkTheme(prevDarkTheme => !prevDarkTheme);
-      setThemeClass(prevThemeClass => prevThemeClass !== "" ? "" : "lite-mode");
+      setThemeClass(prevThemeClass => prevThemeClass !== themeClasses.dark ? themeClasses.dark : themeClasses.lite);
     }
   }
 
