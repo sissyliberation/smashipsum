@@ -1,4 +1,5 @@
 @import '../../variables';
+@import '../../mixins';
 
 .hero {
   $base: &;
@@ -36,6 +37,7 @@
     padding: 0 20px;
     margin-top: 2em;
     filter: grayscale(1);
+    // @include standard-transition(filter);
 
     &:first-child {
       margin-top: 0;
@@ -62,6 +64,7 @@
     display: block;
     max-width: 100%;
     margin: 0 auto;
+    @include standard-transition(all);
   }
 
   &.lite-mode {
