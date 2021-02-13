@@ -12,7 +12,7 @@ export default function FooterContent(props) {
     <Footer className={`footer ${themeClass}`}>
       <div className="footer__inner">
         <div className="footer__container">
-          // Created in ATX by <a href="https://novacourtois.github.io" target="_blank" rel="noopener noreferrer">Nova Skye</a>
+          // made by <a href="https://disregardingstandards.com/" target="_blank" rel="noopener noreferrer">Nova Skye</a>
         </div>
       </div>
     </Footer>
